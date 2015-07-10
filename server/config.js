@@ -1,18 +1,23 @@
+//node moduels
 var express = require('express');
 var bodyParser = require('body-parser');
-var Twitter = require('twitter');
+var request = require('request');
+
+
+//local modules
 var util = require('./utils.js');
 
 
-var app = express();
-
-app.use(bodyParser.json());
+app = express();
 
 
+//routes
+app.get('/', function(req, res){
+	console.log('----', req.body);
+	res.send('hello world');
+});
 
-app.get('/', util.getTwitterData);
-
-
+app.get('/dummy', util.sendDummyData);
 
 
 
