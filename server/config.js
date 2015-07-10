@@ -1,16 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// var utils = require('utils/???');  
+var util = require('./utils.js');
+
 
 var app = express();
 
 app.use(bodyParser.json());
 
-app.get('/', function(req, res, next) {
-  res.send('hi');
-})
+app.get('/', util.getTwitterData);
 
-// routes go here
+
+
+
 
 module.exports = app;
 
