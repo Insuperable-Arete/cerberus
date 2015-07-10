@@ -29,6 +29,8 @@
     "gulp-sass": "^2.0.3",
     "morgan": "^1.6.1",
     "body-parser": "^1.13.2",
-    "twitter": "^1.2.5"
+    "twitter": "^1.2.5",
+    "fbgraph": "^1.0.0",
+    "everyauth": "^0.4.9"
   }
 }
