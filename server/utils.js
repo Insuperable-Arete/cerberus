@@ -2,20 +2,11 @@
 var Twitter = require('twitter');
 
 //local modules
-var resources = require('./resources');
+var resources = require('./resources.js');
 
-//utils
+//util functions
 exports.sendDummyData = function(req, res){
-	res.send(
-		dummydata = {
-			beach: 'testBeach',
-			id: 123,
-			lat: 'testLat',
-			lon: 'testLon',
-			surfData: {justin: 'fong'}
-		}
-	)
+	res.json(resources.dummyData);
 };
-
 
 
