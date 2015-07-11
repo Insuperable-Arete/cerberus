@@ -1,16 +1,25 @@
+//node moduels
 var express = require('express');
 var bodyParser = require('body-parser');
-// var utils = require('utils/???');  
+var request = require('request');
 
-var app = express();
 
-app.use(bodyParser.json());
+//local modules
+var util = require('./utils.js');
 
-app.get('/', function(req, res, next) {
-  res.send('hi');
-})
 
-// routes go here
+app = express();
+
+
+//routes
+app.get('/', function(req, res){
+	console.log('----', req.body);
+	res.send('hello world');
+});
+
+app.get('/dummy', util.sendDummyData);
+
+
 
 module.exports = app;
 
