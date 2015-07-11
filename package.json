@@ -31,6 +31,7 @@
     "body-parser": "^1.13.2",
     "twitter": "^1.2.5",
     "fbgraph": "^1.0.0",
-    "everyauth": "^0.4.9"
+    "everyauth": "^0.4.9",
+    "request": "^2.58.0"
   }
 }
