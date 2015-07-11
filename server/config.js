@@ -1,7 +1,6 @@
 //node moduels
 var express = require('express');
 var bodyParser = require('body-parser');
-var Twitter = require('twitter');
 var request = require('request');
 
 //local modules
