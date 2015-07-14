@@ -4,14 +4,11 @@
     <title>Gnar Swells, Brah</title>
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
   </head>
-  <body ui-view>
-    <a href="http://magicseaweed.com">
-      <img src="http://im-1-uk.msw.ms/msw_powered_by.png">
-    </a>
+  <body ui-view><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
     <section ng-controller="GoogleMapController">
-      <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="37.783724, -122.408978">
-          <!-- dummy static marker -->
-          <marker position="[37.783724, -122.408978]"></marker></map></div>
+      <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
+          <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}">   </marker>
+          <!-- dummy static marker --></map></div>
     </section>
     <script src="../../bower_components/angular/angular.js"></script>
     <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>

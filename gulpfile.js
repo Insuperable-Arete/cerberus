@@ -4,6 +4,7 @@ var sass = require("gulp-sass");
 var jshint = require("gulp-jshint");
 var a11y = require("gulp-a11y");
 var jasmine = require("gulp-jasmine");
+var watch = require("gulp-watch");
 
 gulp.task("lint", function(){
   return gulp.src("./client/**/*.js")
@@ -45,9 +46,13 @@ gulp.task("sass", function(){
     .pipe(gulp.dest("./client/styles"));
   });
 
-// gulp.task("watch", function(){
-//   gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
-// })
+gulp.task("watch", function(){
+  // gulp.watch(["./client/**/*/js", "./client/*.js", "./client/styles/*.scss", ".client/html/*.jade"], ["lint", "jade", "sass"])
+  watch(["./client/html/*.jade", "./client/styles/*.scss"], function(){
+    gulp.start("jade");
+    gulp.start("sass");
+  });
+})
 
 gulp.task("default", ["sass", "jade", "lint", "audit"], function(){
   "gulp says hi"

@@ -6,7 +6,7 @@ map.service('MapService', function($http) {
     //TODO: Start spinner. Spinner will need to be stopped on MapController
     return $http({
       method: 'GET',
-      url: 'http://localhost:1337/dummy'
+      url: 'http://localhost:1337/dbData'
     });
   };
 });
