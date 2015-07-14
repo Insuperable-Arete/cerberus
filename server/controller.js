@@ -24,18 +24,17 @@ module.exports = {
 		newBeach.save(function(err){
 			if (err) throw err;
 			console.log('Beach Entry Created!')
-			res.send('Beach Entry Created')
 		});
   },
 
   populate: function(req, res){
 
-  	//function populates, but throws error in console : (bottom of page)
 
+  	var keys = Object.keys(spotData);
 
-
+  	var beachDataObj = {};
+  	var beachDataArr = [];
   	//the below loop will be modified to deal with additional info (i.e. lat/lon, etc)
-
   	for (var i=0; i<keys.length; i++){
   		beachDataObj[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
   		beachDataArr[i] = {mswId: keys[i], beachname: spotData[keys[i]]};
