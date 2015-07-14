@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 //define schema
 var beachSchema = mongoose.Schema({
-  mswId: { type: Number, required: true, index: {unique: true} },
+  mswId: Number,
   beachname: String,
   lat: Number,
   lon: Number,
