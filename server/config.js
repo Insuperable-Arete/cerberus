@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 
 
 //these routes are for TESTING ONLY
-app.get('/dbData', controller.sendDbData);
+//need to 
+//controller.createEntry();
 
 
 

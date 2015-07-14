@@ -18,27 +18,23 @@ module.exports = {
 			beachname: data.beachname,
 			lat: 'PLACEHOLDER',
 			lon: 'PLACEHOLDER',
-			forecastData: 'PLACEHOLDER'
+			forecastData: testData.dummyData
 		});
 
 		newBeach.save(function(err){
 			if (err) throw err;
 			console.log('Beach Entry Created!')
-			res.send('Beach Entry Created')
 		});
   },
 
   populate: function(req, res){
+
+
   	var keys = Object.keys(spotData);
 
   	var beachDataObj = {};
   	var beachDataArr = [];
-
-  	//for now creating an object for easier look up (mswId or beachname for keys?)
-  	//creating array for easier one-time pop of db
-
   	//the below loop will be modified to deal with additional info (i.e. lat/lon, etc)
-
   	for (var i=0; i<keys.length; i++){
   		beachDataObj[i] =  {mswId: keys[i], beachname: spotData[keys[i]]};
   		beachDataArr[i] = {mswId: keys[i], beachname: spotData[keys[i]]};
@@ -63,7 +59,7 @@ module.exports = {
   			console.log(response.statusCode);
   		})
   }
-// http://magicseaweed.com/api/YOURAPIKEY/forecast/?spot_id=10
-// http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf364025779b64e18/forecast/?spot_id=10
+
 
 }
+
