@@ -4,18 +4,18 @@ var apiUtils = require('./apiUtils.js');
 var spotData = require('./json/beachData.json');
 
 exports.writeBeachEntry = function(beachData){
-  	var newBeach = Beach({
-			mswId: beachData.mswId,
-			beachname: beachData.beachName,
-			lat: beachData.lat,
-			lon: beachData.lon,
-			forecastData: ['justin puts the lotion on its skin']
-		});
+	var newBeach = Beach({
+		mswId: beachData.mswId,
+		beachname: beachData.beachName,
+		lat: beachData.lat,
+		lon: beachData.lon,
+		forecastData: ['test']
+	});
 
-		newBeach.save(function(err){
-			if (err) throw err;
-			console.log('Beach Entry Created!')
-		});
+	newBeach.save(function(err){
+		if (err) throw err;
+		console.log('Beach Entry Created!');
+	});
 };
 
 exports.writeBeachEntries = function(){
@@ -31,8 +31,8 @@ exports.beachDataUpdate = function(id, data){
   })
 };
 
-exports.retrieveBeachDatas = function (cb) {
-  	Beach.find({}, function(err, data){
-  		cb(data);
-  	})
+exports.retrieveAllBeachData = function (cb) {
+	Beach.find({}, function(err, data){
+		cb(data);
+	})
 };

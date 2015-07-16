@@ -1,7 +1,18 @@
-exports.serveDummyRoot = function(req, res){
-  res.send('hello world');
+var request = require('request');
+var db = require('./db//mongodb-data/config.js');
+var Beach = require('./db/models/beach.js');
+var spotData = require('./utils/json/beachData.json');
+var path = require('path');
+var crudUtils = require('./utils/crudUtils.js');
+
+exports.sendSurfSpots = function (req, res) {
+  crudUtils.retrieveAllBeachData(function (data) {
+    res.send(data);
+  });
 };
 
-//fill in export.function to serve down beach data (crudUtils.js --> retrieveBeachDatas)
+exports.sendIndex = function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/html/', 'index.html'));
+};
 
 

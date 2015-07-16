@@ -1,5 +1,5 @@
 // import a css reset
-@import "../../bower_components/normalize-scss/normalize";
+@import "../lib/normalize-scss/normalize";
 @import "map";
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
