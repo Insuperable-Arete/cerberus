@@ -5,7 +5,7 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .circle {
-  background-color: red;
+  background-color: turquoise;
   border-radius: 100px;
   height: 175px;
   width: 175px;
@@ -14,4 +14,30 @@
   position: relative;
   margin: 0 auto;
   text-align: center;
+}
+.glyphicon {
+  &.glyphicon-star {
+    opacity: 0;
+    font-size: 50px;
+    color: darkturquoise;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode:forwards;
+    &-empty {
+      opacity: 0;
+      font-size: 50px;
+      color: darkturquoise;
+      animation-name: fadeIn;
+      animation-duration: 2s;
+      animation-delay: 1s;
+      animation-fill-mode:forwards;
+    }
+  }
+}
+
+
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }

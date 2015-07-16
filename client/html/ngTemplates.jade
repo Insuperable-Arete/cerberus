@@ -2,30 +2,38 @@
 script(type='text/ng-template' id="detailsModal.html")
   .modal-header
     .modal-title.
-      Im a modal!
+      {{beachName}}
   .modal-body
     .row
       .col-md-6
-        .circle.center
+        .center
+          span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(solidRating)")
+          span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(solidRating))")
+        .center.
+          Solid Rating: {{solidRating}}
       .col-md-6
-        .circle.center
+        .center
+          span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(fadedRating)")
+          span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(fadedRating))")
+        .center.
+          Faded Rating: {{fadedRating}}
     .row
       .col-md-3
-        .center.
-          Swell Height
         .circle.center
+        .center.
+          Swell Height: {{swellHeight}}
       .col-md-3
-        .center.
-          Swell Period
         .circle.center
+        .center.
+          Swell Period {{swellPeriod}}
       .col-md-3
-        .center.
-          Wind Speed
         .circle.center
+        .center.
+          Wind Speed:
       .col-md-3
-        .center.
-          Wind Direction
         .circle.center
+        .center.
+          Wind Direction:
   .modal-footer
     button(btn btn-warning ng-click="cancel()").
       Cancel

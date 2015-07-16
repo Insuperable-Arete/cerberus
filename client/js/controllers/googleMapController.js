@@ -31,7 +31,10 @@ map.controller('GoogleMapController', function($scope, $modal, MapService) {
       size: 'lg',
       resolve: {
         forecast: function () {
-          return context.forecast;
+          return JSON.parse(context.forecast[0]);
+        },
+        beachName: function() {
+          return context.name
         }
       }
     });
