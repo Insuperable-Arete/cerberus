@@ -7,51 +7,46 @@
   </head>
   <body ui-view><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
     <section ng-controller="GoogleMapController">
+      <script type="text/ng-template" id="detailsModal.html">
+        <div class="modal-header">
+          <div class="modal-title">Im a modal!</div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="circle center"></div>
+            </div>
+            <div class="col-md-6">
+              <div class="circle center"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="center">Swell Height</div>
+              <div class="circle center"></div>
+            </div>
+            <div class="col-md-3">
+              <div class="center">Swell Period</div>
+              <div class="circle center"></div>
+            </div>
+            <div class="col-md-3">
+              <div class="center">Wind Speed</div>
+              <div class="circle center"></div>
+            </div>
+            <div class="col-md-3">
+              <div class="center">Wind Direction</div>
+              <div class="circle center"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button btn btn-warning ng-click="cancel()">Cancel</button>
+        </div>
+      </script>
       <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
-          <marker ng-repeat="beach in beachData" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE">   </marker>
+          <marker ng-repeat="beach in beachData" forecast="{{beach.forecastData}}" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE" on-click="open()">   </marker>
           <!-- dummy static marker --></map></div>
     </section>
-    <script type="text/ng-template" id="detailsModal.html">
-      <div class="modal-header">
-        <div class="modal-title">Im a modal!</div>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="circle center"></div>
-          </div>
-          <div class="col-md-6">
-            <div class="circle center"></div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="center">Swell Height</div>
-            <div class="circle center"></div>
-          </div>
-          <div class="col-md-3">
-            <div class="center">Swell Period</div>
-            <div class="circle center"></div>
-          </div>
-          <div class="col-md-3">
-            <div class="center">Wind Speed</div>
-            <div class="circle center"></div>
-          </div>
-          <div class="col-md-3">
-            <div class="center">Wind Direction</div>
-            <div class="circle center"></div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button btn btn-primary ng-click="ok()">OK</button>
-        <button btn btn-warning ng-click="cancel()">Cancel</button>
-      </div>
-    </script>
-    <button ng-click="open()" class="btn btn-default">Open me!</button>
-    <button ng-click="open('lg')" class="btn btn-default">Large modal!</button>
-    <button ng-click="open('sm')" class="btn btn-default">Small modal!</button>
-    <button ng-click="toggleAnimation()" class="btn btn-default">Toggle animation!</button>
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../lib/underscore/underscore.js"></script>
