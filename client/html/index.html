@@ -16,9 +16,32 @@
         <div class="modal-title">Im a modal!</div>
       </div>
       <div class="modal-body">
-        <ul>
-          <li ng-repeat="item in items"><a ng-click="selected.item = item"></a></li>
-        </ul>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="circle center"></div>
+          </div>
+          <div class="col-md-6">
+            <div class="circle center"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="center">Swell Height</div>
+            <div class="circle center"></div>
+          </div>
+          <div class="col-md-3">
+            <div class="center">Swell Period</div>
+            <div class="circle center"></div>
+          </div>
+          <div class="col-md-3">
+            <div class="center">Wind Speed</div>
+            <div class="circle center"></div>
+          </div>
+          <div class="col-md-3">
+            <div class="center">Wind Direction</div>
+            <div class="circle center"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button btn btn-primary ng-click="ok()">OK</button>

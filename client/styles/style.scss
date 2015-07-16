@@ -3,3 +3,15 @@
 @import "map";
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.circle {
+  background-color: red;
+  border-radius: 100px;
+  height: 175px;
+  width: 175px;
+}
+.center {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}

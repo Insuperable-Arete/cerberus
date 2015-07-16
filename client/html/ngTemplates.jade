@@ -1,11 +1,31 @@
+//- Modal template
 script(type='text/ng-template' id="detailsModal.html")
   .modal-header
     .modal-title.
       Im a modal!
   .modal-body
-    ul
-      li(ng-repeat="item in items")
-        a(ng-click='selected.item = item')
+    .row
+      .col-md-6
+        .circle.center
+      .col-md-6
+        .circle.center
+    .row
+      .col-md-3
+        .center.
+          Swell Height
+        .circle.center
+      .col-md-3
+        .center.
+          Swell Period
+        .circle.center
+      .col-md-3
+        .center.
+          Wind Speed
+        .circle.center
+      .col-md-3
+        .center.
+          Wind Direction
+        .circle.center
   .modal-footer
     button(btn btn-primary ng-click="ok()").
       OK
