@@ -32,11 +32,11 @@ script(type='text/ng-template' id="detailsModal.html")
         .circle.center
           include anim/windSpeed
         .center.
-          Wind Speed:
+          Wind Speed: {{windSpeed}}
       .col-md-3
         .circle.center
         .center.
-          Wind Direction:
+          Wind Direction: {{windDirection}}
   .modal-footer
     button(btn btn-warning ng-click="cancel()").
       Cancel

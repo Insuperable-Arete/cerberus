@@ -6,6 +6,9 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.fadedRating = $scope.forecast.fadedRating;
   $scope.swellHeight = $scope.forecast.swell.components.combined.height;
   $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
+  $scope.windSpeed = $scope.forecast.wind.speed;
+  $scope.windDirection = $scope.forecast.wind.compassDirection;
+  console.log($scope.forecast);
   $scope.beachName = beachName;
 
   $scope.toRepeat = function(num) {
