@@ -114,7 +114,22 @@
 .wave-4 {
   @extend .wave;
 }
-
+.compassPointer {
+  background: linear-gradient(to right, #ffffff 0%,#ffffff 49%,#ff0000 50%,#ff1a00 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ff1a00',GradientType=1 );
+  height: 7px;
+  width: 115px;
+  position: absolute;
+  top: 85px;
+  left: 30px;
+  animation: spinMiddle 5s infinite linear;
+}
+#compassMiddle {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  top: 63px;
+}
 
 @keyframes fadeIn {
   0% { opacity: 0; }
@@ -153,4 +168,8 @@
 }
 @keyframes moveCloud {
   100% { left: 200px; }
+}
+@keyframes spinMiddle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
