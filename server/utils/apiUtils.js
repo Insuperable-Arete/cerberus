@@ -24,7 +24,6 @@ exports.beachDataReq = function(id, cb){
 };
 
 exports.beachDataReqs = function(){   
-  //i'm pretty sure we don't need the setTimeout...this is very messy right now :(
   spotData.forEach(function(ids){
     var id = ids.mswId;
     exports.beachDataReq(id, function(surfData){
@@ -50,4 +49,3 @@ exports.thriceRequestHack = function(){
   setTimeout(exports.beachDataReqs, time+=time);
   setTimeout(exports.beachDataReqs, time+=time);
 };
-

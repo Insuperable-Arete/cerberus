@@ -7,10 +7,14 @@
 3) start mongo shell process (if desired) by typing "mongo" in seperate window to easily interface with db
 	- refer to "http://docs.mongodb.org/v2.2/tutorial/getting-started-with-the-mongo-shell/" 
 
-4) navigate to 'localhost:1337/writeBeachEntries' to populate db w/ one-time beach data
+4) navigate to 'localhost:1337/writeBeachData' to populate db w/ one-time beach data
 
-5) OPTIONAL navitage to 'localhost:1337/beachDataRequests' to populate db w/
-real data from MSW
+5) navitage to 'localhost:1337/requestBeachData' to populate db w/
+real data from MSW 
+
+(NOTE - Do this only when you want an intial population. the TEMPORARY fix implimented will request data from MSW three time staggered by two-minute intervals to ensure complete population of DB)
+
+6) Every third hour, on minute 0, 2, 4, cron process will update data from MSW. This "triple" population every third hour is a TEMPORARY fix to ensure complete db population
 
 useful links:
 

@@ -21,19 +21,11 @@ exports.writeBeachEntry = function(beachData){
 			});
 };
 
-
 exports.beachDataUpdate = function(){
 	spotData.forEach(function(spotData){
 		exports.writeBeachEntry(spotData)
 	})
 };
-
-// working version
-// exports.beachDatumUpdate = function(id, data){
-//   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
-//     if (err) throw err;
-//   })
-// };
 
 exports.beachDatumUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
@@ -41,7 +33,6 @@ exports.beachDatumUpdate = function(id, data){
     else console.log('wrote beach data');
   })
 };
-
 
 exports.retrieveBeachData = function (cb) {
   	Beach.find({}, function(err, data){
@@ -56,4 +47,3 @@ exports.filterBeachDataTime = function(data){
 		return datum.timestamp > time && datum.timestamp < (time + 86402);
 	});
 };
-
