@@ -9,8 +9,9 @@ html(lang="en" ng-app="app")
       img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
     section(ng-controller="GoogleMapController")
       include map
-    include details
     //- Using include instead of extends
     //- block scripts
     include dependencies
     include scripts
+    //- Include templates for adding modals on map
+    include ngTemplates

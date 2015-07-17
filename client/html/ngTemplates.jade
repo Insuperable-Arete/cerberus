@@ -1,13 +1,43 @@
+//- Modal template
 script(type='text/ng-template' id="detailsModal.html")
   .modal-header
     .modal-title.
-      Im a modal!
+      {{beachName}}
   .modal-body
-    ul
-      li(ng-repeat="item in items")
-        a(ng-click='selected.item = item')
+    .row
+      .col-md-6
+        .center
+          span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(solidRating)")
+          span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(solidRating))")
+        .center.
+          Solid Rating: {{solidRating}}
+      .col-md-6
+        .center
+          span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(fadedRating)")
+          span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(fadedRating))")
+        .center.
+          Faded Rating: {{fadedRating}}
+    .row
+      .col-md-3
+        .circle.center
+          include anim/swellHeight
+        .center.
+          Swell Height: {{swellHeight}}
+      .col-md-3
+        .circle.center
+          include anim/swellPeriod
+        .center.
+          Swell Period: {{swellPeriod}}
+      .col-md-3
+        .circle.center
+          include anim/windSpeed
+        .center.
+          Wind Speed: {{windSpeed}}
+      .col-md-3
+        .circle.center
+          include anim/windDirection
+        .center.
+          Wind Direction: {{windDirection}}
   .modal-footer
-    button(btn btn-primary ng-click="ok()").
-      OK
     button(btn btn-warning ng-click="cancel()").
       Cancel

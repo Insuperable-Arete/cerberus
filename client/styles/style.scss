@@ -3,3 +3,173 @@
 @import "map";
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.circle {
+  background-color: turquoise;
+  border-radius: 100px;
+  height: 175px;
+  width: 175px;
+  overflow: hidden;
+}
+.cloud-1 {
+  @extend .circle;
+  position: absolute;
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: -8px;
+}
+.cloud-2 {
+  @extend .circle;
+  position: absolute;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  bottom: -8px;
+  left: 14px;
+}
+.cloud-3 {
+  @extend .circle;
+  position: absolute;
+  background-color: white;
+  height: 15px;
+  width: 15px;
+  bottom: -8px;
+  left: 40px;
+}
+.rectangle {
+  height: 40px;
+  width: 60px;
+  overflow: auto;
+  position: relative;
+  top: 25px;
+  left: -60px;
+  -webkit-animation-name: moveCloud, phase;
+  -webkit-animation-duration: 3s, 10s;
+  -webkit-animation-iteration-count: infinite, infinite;
+  -webkit-animation-timing-function: linear, linear;
+}
+.rectangle-1 {
+  @extend .rectangle;
+  transform: scale(2);
+  -webkit-animation-duration: 7s
+}
+.center {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+.glyphicon {
+  &.glyphicon-star {
+    opacity: 0;
+    font-size: 50px;
+    color: darkturquoise;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-delay: 1s;
+    animation-fill-mode:forwards;
+    &-empty {
+      @extend .glyphicon.glyphicon-star;
+    }
+  }
+}
+.path-1 {
+  transform: translateX(-925px) scale(1.5) translateY(-40px);
+}
+.path-2 {
+  transform: translateX(-1200px) scale(2) translateY(-40px);
+}
+.path-3 {
+  transform: translateX(-1150px) scale(1.5) translateY(-40px);
+  animation-name: waveIn;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+.path-4 {
+  @extend .path-3;
+  animation-delay: 2.5s;
+}
+.wave {
+  stroke-dasharray: 350;
+  stroke-dashoffset: 200;
+}
+.wave-1 {
+  @extend .wave;
+  -webkit-animation-name: draw, shake;
+  -webkit-animation-delay: 0s, 3s;
+  -webkit-animation-duration: 5s, 5s;
+  -webkit-animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards, backwards;
+  -webkit-animation-timing-function: ease, linear;
+}
+.wave-2 {
+  @extend .wave-1;
+  -webkit-animation-direction: normal, reverse;
+}
+.wave-3 {
+  @extend .wave;
+}
+.wave-4 {
+  @extend .wave;
+}
+.compassPointer {
+  background: linear-gradient(to right, #ffffff 0%,#ffffff 49%,#ff0000 50%,#ff1a00 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ff1a00',GradientType=1 );
+  height: 7px;
+  width: 115px;
+  position: absolute;
+  top: 85px;
+  left: 30px;
+  animation: spinMiddle 5s infinite linear;
+}
+#compassMiddle {
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  top: 63px;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes waveIn {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translateX(-1400px) scale(2) translateY(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-1400px) scale(2) translateY(-40px);
+  }
+}
+@keyframes draw {
+  100% {
+    stroke-dashoffset: 0;
+   }
+}
+@keyframes shake {
+  0% { transform: translateX(20px); }
+  50% { transform: translateX(-20px); }
+  100% { transform: translateX(20px);}
+}
+@keyframes phase {
+  25% {
+    opacity: .5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes moveCloud {
+  100% { left: 200px; }
+}
+@keyframes spinMiddle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
