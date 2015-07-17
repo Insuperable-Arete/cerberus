@@ -20,15 +20,17 @@ script(type='text/ng-template' id="detailsModal.html")
     .row
       .col-md-3
         .circle.center
-          include svgWave
+          include anim/swellHeight
         .center.
           Swell Height: {{swellHeight}}
       .col-md-3
         .circle.center
+          include anim/swellPeriod
         .center.
           Swell Period: {{swellPeriod}}
       .col-md-3
         .circle.center
+          include anim/windSpeed
         .center.
           Wind Speed:
       .col-md-3
