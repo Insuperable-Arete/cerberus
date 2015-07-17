@@ -389,7 +389,7 @@ map {
   margin: 0 auto;
   text-align: center; }
 
-.glyphicon.glyphicon-star {
+.glyphicon.glyphicon-star, .glyphicon.glyphicon-star-empty {
   opacity: 0;
   font-size: 50px;
   color: darkturquoise;
@@ -397,25 +397,24 @@ map {
   animation-duration: 2s;
   animation-delay: 1s;
   animation-fill-mode: forwards; }
-  .glyphicon.glyphicon-star-empty {
-    opacity: 0;
-    font-size: 50px;
-    color: darkturquoise;
-    animation-name: fadeIn;
-    animation-duration: 2s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards; }
 
-g {
-  transform: translateX(-700px); }
+.path-1 {
+  transform: translateX(-925px) scale(1.5) translateY(-40px); }
 
-.path {
-  animation-name: shake;
-  animation-duration: 3.5s;
-  animation-iteration-count: infinite; }
+.path-2 {
+  transform: translateX(-1200px) scale(2) translateY(-40px); }
 
-.wave {
-  stroke-dasharray: 0; }
+.wave-1, .wave-2 {
+  stroke-dasharray: 350;
+  stroke-dashoffset: 200;
+  -webkit-animation-name: draw, shake;
+  -webkit-animation-delay: 0s, 3s;
+  -webkit-animation-duration: 5s, 5s;
+  -webkit-animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards, backwards; }
+
+.wave-2 {
+  -webkit-animation-direction: normal, reverse; }
 
 @keyframes fadeIn {
   0% {
@@ -424,7 +423,7 @@ g {
     opacity: 1; } }
 
 @keyframes draw {
-  50% {
+  100% {
     stroke-dashoffset: 0; } }
 
 @keyframes shake {
