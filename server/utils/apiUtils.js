@@ -25,16 +25,12 @@ exports.beachDataReq = function(id, cb){
 
 exports.beachDataReqs = function(){   
   //i'm pretty sure we don't need the setTimeout...this is very messy right now :(
-  var time = 500;
   spotData.forEach(function(ids){
     var id = ids.mswId;
-    setTimeout( function() {
-      exports.beachDataReq(id, function(surfData){
-        var timeFiltered = crudUtils.filterBeachDataTime(surfData);
-        crudUtils.beachDatumUpdate(id, timeFiltered);
-      }), time});
-    time += 500;
-    console.log(time);
+    exports.beachDataReq(id, function(surfData){
+      var timeFiltered = crudUtils.filterBeachDataTime(surfData);
+      crudUtils.beachDatumUpdate(id, timeFiltered);
+    })
   })
 };
 
