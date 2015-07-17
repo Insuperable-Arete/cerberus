@@ -22,15 +22,15 @@ exports.writeBeachEntry = function(beachData){
 };
 
 exports.beachDataUpdate = function(){
-	spotData.forEach(function(spotData){
-		exports.writeBeachEntry(spotData)
+	_.each(spotData, function(spotDatum){
+		exports.writeBeachEntry(spotDatum)
 	})
 };
 
 exports.beachDatumUpdate = function(id, data){
   Beach.findOneAndUpdate({mswId: id}, {forecastData: data}, function(err, beach){
     if (err) throw err;
-    else console.log('wrote beach data');
+    else console.log('Wrote beach data');
   })
 };
 
@@ -40,6 +40,7 @@ exports.retrieveBeachData = function (cb) {
   	})
 };
 
+//this can be refactored to use a mongo-native util
 exports.filterBeachDataTime = function(data){
 	var parsedData = JSON.parse(data);
 	var time = Math.floor( (Date.now()/1000) );

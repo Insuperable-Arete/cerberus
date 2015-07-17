@@ -1,11 +1,13 @@
 var request = require('request');
 var rp = require('request-promise');
 var cron = require('node-schedule');
+var Promise = require('promise');
+var _ = require('underscore');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 
-exports.beachDataReq = function(id, cb){
+exports.beachDataReq = function(id){
   var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   var options = {
     method: 'GET', 
@@ -13,39 +15,28 @@ exports.beachDataReq = function(id, cb){
   };
 
   rp(options)
-  //this idealy should not be a callback...should chain in promise format
-    .then(function(data){
+    .then(function(surfData){
       console.log('passed: ', id);
-      cb(data)
-    })
-    .catch(function(){
-      console.log('failed: ', id)
-    })
-};
-
-exports.beachDataReqs = function(){   
-  spotData.forEach(function(ids){
-    var id = ids.mswId;
-    exports.beachDataReq(id, function(surfData){
+      //time-filtering will eventually occur in a mongo-native util
       var timeFiltered = crudUtils.filterBeachDataTime(surfData);
       crudUtils.beachDatumUpdate(id, timeFiltered);
     })
-  })
+    .catch(function(){
+      exports.beachDataReq(id);
+    })
+};
+
+exports.beachDataReqs = function(){
+  var ids = spotData.map(function(beachData){
+    return beachData.mswId
+  });
+  _.each(ids, exports.beachDataReq)
 };
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
-  //this can be shortened into a range of hours
   rule.hour = new cron.Range(0, 23, 3);
-  rule.minute = [0, 2, 4];
   cron.scheduleJob(rule, function(){
     exports.beachDataReqs();
   });                                               
-};
-
-exports.thriceRequestHack = function(){
-  var time = 120000;
-  setTimeout(exports.beachDataReqs, time+=time);
-  setTimeout(exports.beachDataReqs, time+=time);
-  setTimeout(exports.beachDataReqs, time+=time);
 };
