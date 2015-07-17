@@ -6,8 +6,6 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 
 exports.beachDataReq = function(id, cb){
-  var failed = [];
-  // var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   var options = {
     method: 'GET', 
