@@ -57,6 +57,3 @@ exports.filterBeachDataTime = function(data){
 	});
 };
 
-console.log(Math.floor( (Date.now()/1000) ))
-console.log(new Date(1437155340))
-console.log('this is the msw date', new Date(1437166800))

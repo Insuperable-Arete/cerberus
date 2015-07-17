@@ -37,8 +37,17 @@ exports.beachDataReqs = function(){
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   //this can be shortened into a range of hours
-  rule.hour = [0,3,6,9,12,15,18,21,24];
+  rule.hour = new cron.Range(0, 23, 3);
+  rule.minute = [0, 2, 4];
   cron.scheduleJob(rule, function(){
     exports.beachDataReqs();
   });                                               
 };
+
+exports.thriceRequestHack = function(){
+  var time = 120000;
+  setTimeout(exports.beachDataReqs, time+=time);
+  setTimeout(exports.beachDataReqs, time+=time);
+  setTimeout(exports.beachDataReqs, time+=time);
+};
+
