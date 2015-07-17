@@ -1,4 +1,4 @@
-//node modules
+//nodem modules
 var mongoose = require('mongoose');
 //mongoose config
 mongoURI = 'mongodb://localhost/thesis'
@@ -14,4 +14,3 @@ db.once('open', function () {
 
 //exports db for use in other files
 module.exports = db;
-

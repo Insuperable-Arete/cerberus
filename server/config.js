@@ -25,9 +25,8 @@ app.get('/', controller.sendIndex);
 //these routes are for TESTING ONLY
 app.get('/dbData', controller.sendSurfSpots);
 //populates db with one-time beach data (e.g. lat/long, etc)
-app.get('/writeBeachEntries', crudUtils.beachDataUpdate);
-//populates db with msw surf data for respective beach
-app.get('/beachDataRequests', apiUtils.beachDataReqs);
+app.get('/writeBeachData', crudUtils.beachDataUpdate);
+//populates db with msw surf data for respective beach (use for initial/on-demand population)
+app.get('/requestBeachData', apiUtils.thriceRequestHack);
 
 module.exports = app;
-

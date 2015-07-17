@@ -6,8 +6,6 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 
 exports.beachDataReq = function(id, cb){
-  var failed = [];
-  // var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
   var options = {
     method: 'GET', 
@@ -26,25 +24,28 @@ exports.beachDataReq = function(id, cb){
 };
 
 exports.beachDataReqs = function(){   
-  //i'm pretty sure we don't need the setTimeout...this is very messy right now :(
-  var time = 500;
   spotData.forEach(function(ids){
     var id = ids.mswId;
-    setTimeout( function() {
-      exports.beachDataReq(id, function(surfData){
-        var timeFiltered = crudUtils.filterBeachDataTime(surfData);
-        crudUtils.beachDatumUpdate(id, timeFiltered);
-      }), time});
-    time += 500;
-    console.log(time);
+    exports.beachDataReq(id, function(surfData){
+      var timeFiltered = crudUtils.filterBeachDataTime(surfData);
+      crudUtils.beachDatumUpdate(id, timeFiltered);
+    })
   })
 };
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   //this can be shortened into a range of hours
-  rule.hour = [0,3,6,9,12,15,18,21,24];
+  rule.hour = new cron.Range(0, 23, 3);
+  rule.minute = [0, 2, 4];
   cron.scheduleJob(rule, function(){
     exports.beachDataReqs();
   });                                               
+};
+
+exports.thriceRequestHack = function(){
+  var time = 120000;
+  setTimeout(exports.beachDataReqs, time+=time);
+  setTimeout(exports.beachDataReqs, time+=time);
+  setTimeout(exports.beachDataReqs, time+=time);
 };
