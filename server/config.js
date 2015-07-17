@@ -19,11 +19,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../client'));
 
 //utils to be called on server init
-
-//cron process
 apiUtils.updateBeachData();
 
 app.get('/', controller.sendIndex);
+//these routes are for TESTING ONLY
+app.get('/dbData', controller.sendSurfSpots);
 //populates db with one-time beach data (e.g. lat/long, etc)
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
 //populates db with msw surf data for respective beach (use for initial/on-demand population)
