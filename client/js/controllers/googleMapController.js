@@ -5,10 +5,10 @@ map.controller('GoogleMapController', function($scope, $modal, MapService) {
   var markers = [];
   $scope.getBeachData = function(){
     MapService.getBeachData()
-      .then(function(result){
-        $scope.beachData = result.data;
+      .then(function (beaches) {
+        $scope.beachData = beaches;
         // return result.data;
-      })
+      });
   };
   // .then(function() {
   //     //TODO: Fill out what to do once beach data is obtained

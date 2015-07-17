@@ -1,9 +1,0 @@
-div(map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&sensor=false")
-  map(center="36.958, -119.2658" zoom="6")
-  
-    marker(ng-repeat="beach in beachData" forecast="{{beach.forecastData}}" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE" on-click="open()")    
-    
-    // dummy static marker 
-    //- marker(position="[37.783724, -122.408978]")
-    //- marker(position="[37.783724, -122.408978]")
-  

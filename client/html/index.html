@@ -19,21 +19,20 @@
         <button class="btn btn-info">Icon</button>
       </form>
     </div>
-    <section ng-controller="GoogleMapController">
-      <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
-          <marker ng-repeat="beach in beachData" forecast="{{beach.forecastData}}" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE" on-click="open()">   </marker>
-          <!-- dummy static marker --></map></div>
-    </section>
+    <section ng-controller="GoogleMapController"></section>
+    <script src="../lib/underscore/underscore.js"></script>
+    <!-- script(src='../lib/d3/d3.min.js')-->
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="../lib/underscore/underscore.js"></script>
     <script src="../lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../lib/ngmap/build/scripts/ng-map.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
     <script src="../js/controllers/detailsController.js"></script>
     <script src="../js/services/mapService.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="../js/services/d3Service.js"></script>
+    <script src="../js/directives/spotDirective.js"></script>
     <script src="../app.js"></script>
     <script type="text/ng-template" id="detailsModal.html">
       <div class="modal-header">
