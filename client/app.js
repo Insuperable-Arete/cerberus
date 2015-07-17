@@ -8,6 +8,7 @@ var app = angular.module('app', [
   'ui.router',
   'ui.bootstrap'
 ])
+// TODO: fix router when expanding beyond our only view
 // .config(function($urlRouterProvider, $stateProvider) {
 //   $urlRouterProvider.otherwise('/');
 

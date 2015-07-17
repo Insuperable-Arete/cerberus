@@ -32,12 +32,14 @@ angular.module('app.directives', [])
             }
 
             // setup variables for the circle
+            // color will be determined by the solidRating on the data.
+            // radius will be static
+            // cx and cy will depend on lat/lon
             var radius = '100';
             var color = "blue";
             var cx = '30';
             var cy = '30';
 
-            // 
             svg.selectAll('circle')
               .data(data).enter()
                 .append('circle')
@@ -47,6 +49,7 @@ angular.module('app.directives', [])
                 .attr('fill', color)
           }
 
+          scope.render(scope.data);
 
 
         

@@ -4,6 +4,7 @@
     <title>Gnar Swells, Brah</title>
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
+    <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   </head>
   <body ui-view>
     <nav class="navbar navbar-inverse">
@@ -18,15 +19,104 @@
         <input placeholder="Search for a surf spot">
         <button class="btn btn-info">Icon</button>
       </form>
+    </div><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+    <div ng-controller="GoogleMapController" id="map">
+      <!--include map-->
     </div>
-    <section ng-controller="GoogleMapController"></section>
+    <!--d3-spot-->
+    <script type="text/ng-template" id="detailsModal.html">
+      <div class="modal-header">
+        <div class="modal-title">{{beachName}}</div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="center"><span ng-repeat="star in toRepeat(solidRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(solidRating))" class="glyphicon glyphicon-star-empty"></span></div>
+            <div class="center"><strong>Solid Rating</strong>
+              <div class="center">{{solidRating}}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="center"><span ng-repeat="star in toRepeat(fadedRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(fadedRating))" class="glyphicon glyphicon-star-empty"></span></div>
+            <div class="center"><strong>Faded Rating</strong>
+              <div class="center">{{fadedRating}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="circle center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
+                <g class="path-1">
+                  <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-1"></path>
+                </g>
+                <g class="path-2">
+                  <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-2"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="center"><strong>Swell Height</strong>
+              <div class="center">{{swellHeight}}</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="circle center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="900.918" height="600.818">
+                <g class="path-3">
+                  <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-3"></path>
+                </g>
+                <g class="path-4">
+                  <path stroke="#4CADC1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="1300" stroke-dashoffset="1300" d="M1230.4 112.3c-5.6 0-10.2-4.6-10.2-10.2 0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2s-10.2-4.6-10.2-10.2c0 5.6-4.6 10.2-10.2 10.2" fill="none" class="wave-4"></path>
+                </g>
+              </svg>
+            </div>
+            <div class="center"><strong>Swell Period</strong>
+              <div class="center">{{swellPeriod}}</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="circle center">
+              <div class="rectangle">
+                <div class="cloud-1"></div>
+                <div class="cloud-2"></div>
+                <div class="cloud-3"></div>
+              </div>
+              <div class="rectangle-1">
+                <div class="cloud-1"></div>
+                <div class="cloud-2"></div>
+                <div class="cloud-3"></div>
+              </div>
+            </div>
+            <div class="center"><strong>Wind Speed</strong>
+              <div class="center">{{windSpeed}}</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="circle center">
+              <div class="north"><strong>N</strong></div>
+              <div class="compassPointer"></div>
+              <div id="compassMiddle" class="center circle"></div>
+            </div>
+            <div class="center"><strong>Wind Direction</strong>
+              <div class="center">{{windDirection}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button btn btn-warning ng-click="cancel()">Cancel</button>
+      </div>
+    </script>
+    <button ng-click="open()" class="btn btn-default">Open me!</button>
+    <button ng-click="open('lg')" class="btn btn-default">Large modal!</button>
+    <button ng-click="open('sm')" class="btn btn-default">Small modal!</button>
+    <button ng-click="toggleAnimation()" class="btn btn-default">Toggle animation!</button>
     <script src="../lib/underscore/underscore.js"></script>
     <!-- script(src='../lib/d3/d3.min.js')-->
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../lib/ngmap/build/scripts/ng-map.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
     <script src="../js/controllers/detailsController.js"></script>

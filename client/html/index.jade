@@ -2,8 +2,7 @@ doctype html
 html(lang="en" ng-app="app")
   head
     title Gnar Swells, Brah
-    link(rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css")
-    link(rel="stylesheet" type="text/css" href="../assets/style.css")
+    include preload
   body(ui-view)
     nav.navbar.navbar-inverse
       .container-fluid
@@ -19,7 +18,12 @@ html(lang="en" ng-app="app")
         input(placeholder="Search for a surf spot")
         button.btn.btn-info.
           Icon
-    section(ng-controller="GoogleMapController")
+    a(href="http://magicseaweed.com")
+      img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
+    div(ng-controller="GoogleMapController" id="map")
+      //include map
+    //d3-spot
+    include details
     //- Using include instead of extends
     //- block scripts
     include dependencies
