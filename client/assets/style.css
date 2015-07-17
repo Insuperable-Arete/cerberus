@@ -385,17 +385,44 @@ map {
   overflow: hidden; }
 
 .cloud-1 {
-  background-color: navy; }
+  position: absolute;
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: -8px; }
 
 .cloud-2 {
-  background-color: navy; }
+  position: absolute;
+  background-color: white;
+  height: 30px;
+  width: 30px;
+  bottom: -8px;
+  left: 14px; }
 
 .cloud-3 {
-  background-color: navy; }
+  position: absolute;
+  background-color: white;
+  height: 15px;
+  width: 15px;
+  bottom: -8px;
+  left: 40px; }
 
-.rectangle {
-  backgroud-color: red;
-  overflow: hidden; }
+.rectangle, .rectangle-1 {
+  height: 40px;
+  width: 60px;
+  overflow: auto;
+  position: relative;
+  top: 25px;
+  left: -60px;
+  -webkit-animation-name: moveCloud, phase;
+  -webkit-animation-duration: 3s, 10s;
+  -webkit-animation-iteration-count: infinite, infinite;
+  -webkit-animation-timing-function: linear, linear; }
+
+.rectangle-1 {
+  transform: scale(2);
+  -webkit-animation-duration: 7s; }
 
 .center {
   position: relative;
@@ -436,7 +463,8 @@ map {
   -webkit-animation-delay: 0s, 3s;
   -webkit-animation-duration: 5s, 5s;
   -webkit-animation-iteration-count: 1, infinite;
-  -webkit-animation-fill-mode: forwards, backwards; }
+  -webkit-animation-fill-mode: forwards, backwards;
+  -webkit-animation-timing-function: ease, linear; }
 
 .wave-2 {
   -webkit-animation-direction: normal, reverse; }
@@ -468,3 +496,13 @@ map {
     transform: translateX(-20px); }
   100% {
     transform: translateX(20px); } }
+
+@keyframes phase {
+  25% {
+    opacity: .5; }
+  50% {
+    opacity: 1; } }
+
+@keyframes moveCloud {
+  100% {
+    left: 200px; } }
