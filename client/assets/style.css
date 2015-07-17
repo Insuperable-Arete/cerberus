@@ -381,7 +381,8 @@ map {
   background-color: turquoise;
   border-radius: 100px;
   height: 175px;
-  width: 175px; }
+  width: 175px;
+  overflow: hidden; }
 
 .center {
   position: relative;
@@ -405,8 +406,31 @@ map {
     animation-delay: 1s;
     animation-fill-mode: forwards; }
 
+g {
+  transform: translateX(-700px); }
+
+.path {
+  animation-name: shake;
+  animation-duration: 3.5s;
+  animation-iteration-count: infinite; }
+
+.wave {
+  stroke-dasharray: 0; }
+
 @keyframes fadeIn {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
+
+@keyframes draw {
+  50% {
+    stroke-dashoffset: 0; } }
+
+@keyframes shake {
+  0% {
+    transform: translateX(20px); }
+  50% {
+    transform: translateX(-20px); }
+  100% {
+    transform: translateX(20px); } }
