@@ -9,35 +9,53 @@ script(type='text/ng-template' id="detailsModal.html")
         .center
           span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(solidRating)")
           span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(solidRating))")
-        .center.
-          Solid Rating: {{solidRating}}
+        .center
+          strong.
+            Solid Rating
+          .center.
+            {{solidRating}}
       .col-md-6
         .center
           span.glyphicon.glyphicon-star(ng-repeat="star in toRepeat(fadedRating)")
           span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars(fadedRating))")
-        .center.
-          Faded Rating: {{fadedRating}}
+        .center
+          strong.
+            Faded Rating
+          .center.
+            {{fadedRating}}
     .row
       .col-md-3
         .circle.center
           include anim/swellHeight
-        .center.
-          Swell Height: {{swellHeight}}
+        .center
+          strong.
+            Swell Height
+          .center.  
+            {{swellHeight}}
       .col-md-3
         .circle.center
           include anim/swellPeriod
-        .center.
-          Swell Period: {{swellPeriod}}
+        .center
+          strong.
+            Swell Period
+          .center.
+            {{swellPeriod}}
       .col-md-3
         .circle.center
           include anim/windSpeed
-        .center.
-          Wind Speed: {{windSpeed}}
+        .center
+          strong.
+            Wind Speed
+          .center.
+            {{windSpeed}}
       .col-md-3
         .circle.center
           include anim/windDirection
-        .center.
-          Wind Direction: {{windDirection}}
+        .center
+          strong.
+            Wind Direction
+          .center.
+            {{windDirection}}
   .modal-footer
     button(btn btn-warning ng-click="cancel()").
       Cancel

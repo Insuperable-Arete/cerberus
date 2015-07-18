@@ -8,7 +8,6 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.swellPeriod = $scope.forecast.swell.components.combined.period;
   $scope.windSpeed = $scope.forecast.wind.speed;
   $scope.windDirection = $scope.forecast.wind.compassDirection;
-  console.log($scope.forecast);
   $scope.beachName = beachName;
 
   $scope.toRepeat = function(num) {
@@ -21,11 +20,6 @@ det.controller('DetailsController', function($scope, $modalInstance, forecast, b
   $scope.remainingStars = function(num) {
     return 5 - num;
   }
-  console.log($scope.forecast);
-  console.log($scope.solidRating);
-  console.log($scope.fadedRating);
-  console.log($scope.swellHeight);
-  console.log($scope.swellPeriod);
   // TODO: Template for data selection from modal
   // $scope.ok = function () {
   //   $modalInstance.close($scope.selected.forecast);

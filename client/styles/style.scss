@@ -1,15 +1,21 @@
 // import a css reset
 @import "../lib/normalize-scss/normalize";
 @import "map";
+@import "bootstrapMod";
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .circle {
+  opacity: 0;
   background-color: turquoise;
   border-radius: 100px;
   height: 175px;
   width: 175px;
   overflow: hidden;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 .cloud-1 {
   @extend .circle;
@@ -41,7 +47,7 @@
 .rectangle {
   height: 40px;
   width: 60px;
-  overflow: auto;
+  overflow: hidden;
   position: relative;
   top: 25px;
   left: -60px;
@@ -66,7 +72,7 @@
     font-size: 50px;
     color: darkturquoise;
     animation-name: fadeIn;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-delay: 1s;
     animation-fill-mode:forwards;
     &-empty {

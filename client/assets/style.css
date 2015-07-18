@@ -371,18 +371,46 @@ th {
 map {
   margin: 0 auto;
   margin-top: 20px;
-  height: 650px;
-  width: 75%; }
+  height: 676px;
+  width: 100%; }
+
+/* Modifications to Bootstrap styling */
+.navbar {
+  margin-bottom: -20px;
+  background-color: #2F2F2F;
+  border-radius: 0; }
+
+.mswPower {
+  padding: 0 15px; }
+
+.navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
+  color: white !important; }
+
+.search-board {
+  position: absolute;
+  z-index: 1000;
+  top: 70px;
+  left: 120px;
+  height: 50px;
+  width: 230px; }
+  .search-board form {
+    margin: -12px -10px;
+    position: fixed; }
 
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
 
 .circle, .cloud-1, .cloud-2, .cloud-3 {
+  opacity: 0;
   background-color: turquoise;
   border-radius: 100px;
   height: 175px;
   width: 175px;
-  overflow: hidden; }
+  overflow: hidden;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards; }
 
 .cloud-1 {
   position: absolute;
@@ -411,7 +439,7 @@ map {
 .rectangle, .rectangle-1 {
   height: 40px;
   width: 60px;
-  overflow: auto;
+  overflow: hidden;
   position: relative;
   top: 25px;
   left: -60px;
@@ -434,7 +462,7 @@ map {
   font-size: 50px;
   color: darkturquoise;
   animation-name: fadeIn;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 1s;
   animation-fill-mode: forwards; }
 

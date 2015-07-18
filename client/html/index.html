@@ -5,7 +5,20 @@
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
-  <body ui-view><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+  <body ui-view>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
+          <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
+        </div><a href="http://magicseaweed.com" class="mswPower navbar-brand navbar-right"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+      </div>
+    </nav>
+    <div class="well search-board left-board">
+      <form>
+        <input placeholder="Search for a surf spot">
+        <button class="btn btn-info">Icon</button>
+      </form>
+    </div>
     <section ng-controller="GoogleMapController">
       <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
           <marker ng-repeat="beach in beachData" forecast="{{beach.forecastData}}" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE" on-click="open()">   </marker>
@@ -30,11 +43,15 @@
         <div class="row">
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(solidRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(solidRating))" class="glyphicon glyphicon-star-empty"></span></div>
-            <div class="center">Solid Rating: {{solidRating}}</div>
+            <div class="center"><strong>Solid Rating</strong>
+              <div class="center">{{solidRating}}</div>
+            </div>
           </div>
           <div class="col-md-6">
             <div class="center"><span ng-repeat="star in toRepeat(fadedRating)" class="glyphicon glyphicon-star"></span><span ng-repeat="star in toRepeat(remainingStars(fadedRating))" class="glyphicon glyphicon-star-empty"></span></div>
-            <div class="center">Faded Rating: {{fadedRating}}</div>
+            <div class="center"><strong>Faded Rating</strong>
+              <div class="center">{{fadedRating}}</div>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -49,7 +66,9 @@
                 </g>
               </svg>
             </div>
-            <div class="center">Swell Height: {{swellHeight}}</div>
+            <div class="center"><strong>Swell Height</strong>
+              <div class="center">{{swellHeight}}</div>
+            </div>
           </div>
           <div class="col-md-3">
             <div class="circle center">
@@ -62,7 +81,9 @@
                 </g>
               </svg>
             </div>
-            <div class="center">Swell Period: {{swellPeriod}}</div>
+            <div class="center"><strong>Swell Period</strong>
+              <div class="center">{{swellPeriod}}</div>
+            </div>
           </div>
           <div class="col-md-3">
             <div class="circle center">
@@ -77,7 +98,9 @@
                 <div class="cloud-3"></div>
               </div>
             </div>
-            <div class="center">Wind Speed: {{windSpeed}}</div>
+            <div class="center"><strong>Wind Speed</strong>
+              <div class="center">{{windSpeed}}</div>
+            </div>
           </div>
           <div class="col-md-3">
             <div class="circle center">
@@ -85,7 +108,9 @@
               <div class="compassPointer"></div>
               <div id="compassMiddle" class="center circle"></div>
             </div>
-            <div class="center">Wind Direction: {{windDirection}}</div>
+            <div class="center"><strong>Wind Direction</strong>
+              <div class="center">{{windDirection}}</div>
+            </div>
           </div>
         </div>
       </div>
