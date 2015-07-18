@@ -1,16 +1,10 @@
 angular.module('app.googleMapController', [])
-
-
-// scope.data = [{
-//   mswId: 162,
-//   beachname: "Mavericks",
-//   lat: 37.4924,
-//   lon: -122.501,
-//   forecastData: [{solidRating: 5}]
-
   .controller('GoogleMapController', function($scope, MapService, d3Service) {
-    d3Service.d3().then(function(d3) {
-      
+
+
+    $scope.spotColors = ['#3EFFF3', '#48E897', '#5CFF63', '#9AE848', '#FFFC54'];
+
+    d3Service.d3().then(function(d3) {      
       var map = new google.maps.Map(d3.select('#map').node(), {
         zoom: 6,
         center: new google.maps.LatLng(36.958, -119.2658)
@@ -54,9 +48,8 @@ angular.module('app.googleMapController', [])
 =======
 
       MapService.getBeachData().then(function (beaches) {
-
         var overlay = new google.maps.OverlayView();
-
+        
         overlay.onAdd = function () {
           var layer = d3.select(this.getPanes().overlayLayer).append('div')
             .attr('class', 'beaches');
@@ -75,16 +68,16 @@ angular.module('app.googleMapController', [])
             marker.append('svg:circle')
               .attr('r', 4.5)
               .attr('cx', padding)
-              .attr('cy', padding);
+              .attr('cy', padding)
+              .attr('fill', function(d) { return $scope.spotColors[d.forecastData[0].solidRating] })
 
             marker.append('svg:text')
               .attr('x', padding + 7)
               .attr('y', padding)
               .attr('dy', '.31em')
-              .text(function(d) { return d.beachname });
+              .text(function(d) { return d.beachname; });
 
             function transform(d) {
-              console.log(d)
               d = new google.maps.LatLng(d.value.lat, d.value.lon);
               d = projection.fromLatLngToDivPixel(d);
               return d3.select(this)
@@ -94,20 +87,7 @@ angular.module('app.googleMapController', [])
           };
         };
         overlay.setMap(map);
-      })
-    })
-    // var markers = [];
-    // $scope.getBeachData = function(){
-    //   MapService.getBeachData()
-    //     .then(function (beaches) {
-    //       $scope.beachData = beaches;
-    //       // return result.data;
-    //     });
-    // };
-    // // .then(function() {
-    // //     //TODO: Fill out what to do once beach data is obtained
-    // //     //TODO: Stop spinner
-    // //   // });
-    // $scope.getBeachData();
+      });
+    });
   });
 >>>>>>> (feat) markers on the map are now dynamic d3 svgs

@@ -3,7 +3,6 @@ var app = angular.module('app', [
   'app.detailsController',
   'app.googleMapController',
   'app.mapService',
-  'app.directives',
   'd3',
   'ui.router',
   'ui.bootstrap'
