@@ -1,7 +1,7 @@
 var det = angular.module('app.detailsController', []);
 
 det.controller('DetailsController', function($scope, $modalInstance, forecast, beachName) {
-  $scope.forecast = forecast[0];
+  $scope.forecast = forecast;
   $scope.solidRating = $scope.forecast.solidRating;
   $scope.fadedRating = $scope.forecast.fadedRating;
   $scope.swellHeight = $scope.forecast.swell.components.combined.height;

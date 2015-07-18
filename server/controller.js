@@ -6,7 +6,7 @@ var path = require('path');
 var crudUtils = require('./utils/crudUtils.js');
 
 exports.sendSurfSpots = function (req, res) {
-  crudUtils.retrieveAllBeachData(function (data) {
+  crudUtils.retrieveBeachData(function (data) {
     res.send(data);
   });
 };
@@ -14,5 +14,3 @@ exports.sendSurfSpots = function (req, res) {
 exports.sendIndex = function (req, res) {
   res.sendFile(path.join(__dirname, '../client/html/', 'index.html'));
 };
-
-
