@@ -27,7 +27,7 @@ app.get('/dbData', controller.sendSurfSpots);
 //populates db with one-time beach data (e.g. lat/long, etc)
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
 //populates db with msw surf data for respective beach (use for initial/on-demand population)
-app.get('/requestBeachData', apiUtils.beachDataReqs);
+app.get('/requestBeachData', apiUtils.beachDataReq);
 
 
 
