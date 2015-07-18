@@ -1,6 +1,7 @@
 // import a css reset
 @import "../lib/normalize-scss/normalize";
 @import "map";
+@import "bootstrapMod";
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 

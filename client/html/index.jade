@@ -5,8 +5,20 @@ html(lang="en" ng-app="app")
     link(rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css")
     link(rel="stylesheet" type="text/css" href="../assets/style.css")
   body(ui-view)
-    a(href="http://magicseaweed.com")
-      img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href="#").
+            Cerferus
+          p.navbar-text.navbar-left.
+            Gnar Swells, Brah
+        a.mswPower.navbar-brand.navbar-right(href="http://magicseaweed.com")
+          img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
+    .well.search-board.left-board
+      form
+        input(placeholder="Search for a surf spot")
+        button.btn.btn-info.
+          Icon
     section(ng-controller="GoogleMapController")
       include map
     //- Using include instead of extends

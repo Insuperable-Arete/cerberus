@@ -5,7 +5,20 @@
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
   </head>
-  <body ui-view><a href="http://magicseaweed.com"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+  <body ui-view>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
+          <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
+        </div><a href="http://magicseaweed.com" class="mswPower navbar-brand navbar-right"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+      </div>
+    </nav>
+    <div class="well search-board left-board">
+      <form>
+        <input placeholder="Search for a surf spot">
+        <button class="btn btn-info">Icon</button>
+      </form>
+    </div>
     <section ng-controller="GoogleMapController">
       <div map-lazy-load="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"><map center="36.958, -119.2658" zoom="6">
           <marker ng-repeat="beach in beachData" forecast="{{beach.forecastData}}" position="[{{beach.lat}}, {{beach.lon}}]" name="{{beach.beachname}}" tilt="45" map-type-id="SATELLITE" on-click="open()">   </marker>
