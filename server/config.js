@@ -29,6 +29,4 @@ app.get('/writeBeachData', crudUtils.beachDataUpdate);
 //populates db with msw surf data for respective beach (use for initial/on-demand population)
 app.get('/requestBeachData', apiUtils.beachDataReq);
 
-
-
 module.exports = app;
