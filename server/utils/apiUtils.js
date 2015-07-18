@@ -41,4 +41,3 @@ exports.updateBeachData = function(){
     exports.beachDataReqs();
   });                                               
 };
-
