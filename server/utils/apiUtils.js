@@ -1,11 +1,12 @@
 var request = require('request');
 var rp = require('request-promise');
 var cron = require('node-schedule');
-var Promise = require('promise');
 var _ = require('underscore');
 
 var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
+
+var time = 1000;
 
 exports.beachDataReq = function(id){
   var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id=' + id.toString();
@@ -15,15 +16,15 @@ exports.beachDataReq = function(id){
   };
 
   rp(options)
-    .then(function(surfData){
+    .then(function(response){
       console.log('passed: ', id);
-      //time-filtering will eventually occur in a mongo-native util
-      var timeFiltered = crudUtils.filterBeachDataTime(surfData);
+      var timeFiltered = crudUtils.filterBeachDataTime(response);
       crudUtils.beachDatumUpdate(id, timeFiltered);
     })
-    .catch(function(){
-      exports.beachDataReq(id);
-    })
+    .catch(function(error){
+      console.log(error);
+      setTimeout(exports.beachDataReq(id), time+=time);
+    });
 };
 
 exports.beachDataReqs = function(){
