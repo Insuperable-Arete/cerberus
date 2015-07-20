@@ -381,14 +381,14 @@ th {
 
 .search-board {
   position: absolute;
-  z-index: 1000;
+  z-index: 1;
   top: 70px;
   left: 120px;
   height: 50px;
   width: 230px; }
   .search-board form {
     margin: -12px -10px;
-    position: fixed; }
+    position: absolute; }
 
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer; }
@@ -524,6 +524,28 @@ html, body, #map {
   width: 10px;
   background-color: black;
   top: 63px; }
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: white;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  display: flex; }
+
+.loading path {
+  animation-name: draw;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  stroke-dasharray: 300;
+  fill: white;
+  stroke-dashoffset: 300;
+  stroke: black;
+  animation-timing-function: linear; }
 
 @keyframes fadeIn {
   0% {

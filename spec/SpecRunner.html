@@ -2,20 +2,56 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Jasmine Spec Runner v<%= jasmineVersion %></title>
+  <title>Jasmine Spec Runner v jasmine-1.3.0</title>
 
-  <link rel="shortcut icon" type="image/png" href="lib/jasmine-<%= jasmineVersion %>/jasmine_favicon.png">
-  <link rel="stylesheet" href="lib/jasmine-<%= jasmineVersion %>/jasmine.css">
+  <!-- <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.0/jasmine_favicon.png"> -->
+  <link rel="stylesheet" href="lib/jasmine-1.3.0/jasmine.css">
 
-  <script src="lib/jasmine-<%= jasmineVersion %>/jasmine.js"></script>
-  <script src="lib/jasmine-<%= jasmineVersion %>/jasmine-html.js"></script>
-  <script src="lib/jasmine-<%= jasmineVersion %>/boot.js"></script>
+  <script src="lib/jasmine-1.3.0/jasmine.js"></script>
+  <script src="lib/jasmine-1.3.0/jasmine-html.js"></script>
 
   <!-- include source files here... -->
+  <script src="../client/lib/angular/angular.js"></script>
+  <script src="../client/lib/angular-mocks/angular-mocks.js"></script>
+  <script src="../client/lib/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="../client/lib/ngmap/build/scripts/ng-map.js"></script>
+  <script src="../client/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="../client/app.js"></script>
+  <script src="../client/js/services/mapService.js"></script>
+  <script src="../client/js/controllers/homeController.js"></script>
+  <script src="../client/js/controllers/googleMapController.js"></script>
   <script src="../client/js/controllers/detailsController.js"></script>
-
   <!-- include spec files here... -->
-  <script src="test.js"></script>
+  <script src="ngSpec.js"></script>
+
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      var htmlReporter = new jasmine.HtmlReporter();
+
+      jasmineEnv.addReporter(htmlReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+        return htmlReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
 
 </head>
 
