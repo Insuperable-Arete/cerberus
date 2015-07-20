@@ -6,6 +6,7 @@ var app = angular.module('app', [
   'd3',
   'ui.router',
   'ui.bootstrap'
+  // 'ngMock'
 ])
 // TODO: fix router when expanding beyond our only view
 // .config(function($urlRouterProvider, $stateProvider) {
