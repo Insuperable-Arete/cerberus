@@ -3,7 +3,7 @@ html(lang="en" ng-app="app")
   head
     title Gnar Swells, Brah
     include preload
-  body(ui-view)
+  body(ng-controller="HomeController")
     nav.navbar.navbar-inverse
       .container-fluid
         .navbar-header
@@ -18,7 +18,7 @@ html(lang="en" ng-app="app")
         input(placeholder="Search for a surf spot")
         button.btn.btn-info.
           Icon
-    div(ng-controller="GoogleMapController" id="map")
+    div(ui-view id="map")
     include details
     //- Using include instead of extends
     //- block scripts

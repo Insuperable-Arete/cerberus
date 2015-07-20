@@ -9,13 +9,12 @@ var app = angular.module('app', [
   // 'ngMock'
 ])
 // TODO: fix router when expanding beyond our only view
-// .config(function($urlRouterProvider, $stateProvider) {
-//   $urlRouterProvider.otherwise('/');
+.config(function($urlRouterProvider, $stateProvider) {
+  $urlRouterProvider.otherwise('/');
 
-//   $stateProvider
-//   .state('home', {
-//     url: '/',
-//     templateUrl: '../html/index.html',
-//     controller: 'HomeController'
-//   });
-// });
+  $stateProvider
+  .state('home', {
+    url: '/',
+    controller: 'GoogleMapController'
+  });
+});
