@@ -4,6 +4,9 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
+    .overlay
+      include loading
+      //- img.center(src="../assets/loading.svg")
     nav.navbar.navbar-inverse
       .container-fluid
         .navbar-header
@@ -19,7 +22,6 @@ html(lang="en" ng-app="app")
         button.btn.btn-info.
           Icon
     div(ui-view id="map")
-    include details
     //- Using include instead of extends
     //- block scripts
     include dependencies
