@@ -369,7 +369,7 @@ th {
 
 /* Modifications to Bootstrap styling */
 .navbar {
-  margin-bottom: -20px;
+  margin: 0px;
   background-color: #2F2F2F;
   border-radius: 0; }
 
