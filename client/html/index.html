@@ -7,26 +7,6 @@
     <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
   </head>
   <body ng-controller="HomeController">
-    <div class="overlay">
-      <svg viewBox="0 0 600 300" class="svg-defs">
-        <symbol id="s-text">
-          <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">Loading</text>
-          <mask id="m-text" maskunits="userSpaceOnUse" maskcontentunits="userSpaceOnUse">
-            <rect width="100%" height="100%" class="mask__shape"></rect>
-            <use xlink:href="#s-text" class="mask__text"></use>
-          </mask>
-        </symbol>
-      </svg>
-      <div class="box-with-text">
-        <div class="text-fill">
-          <video src="http://tympanus.net/codrops-playground/assets/images/posts/23145/bokeh2.mp4" autoplay loop class="video"></video>
-        </div>
-        <svg viewBox="0 0 600 300" class="svg-inverted-mask">
-          <rect width="100%" height="100%" mask="url(#m-text)" class="shap--fill"></rect>
-        </svg>
-        <use xlink:href="#s-text" class="text--transparent"></use>
-      </div>
-    </div>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
