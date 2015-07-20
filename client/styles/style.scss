@@ -1,9 +1,33 @@
 // import a css reset
 @import "../lib/normalize-scss/normalize";
-@import "map";
 @import "bootstrapMod";
 
-.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+.nav, .pagination, .carousel, .panel-title a { 
+  cursor: pointer; 
+}
+
+html, body, #map{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0
+}
+
+.beaches, .beaches svg {
+  position: absolute;
+}
+
+.beaches svg {
+  width: 15px;
+  height: 15px;
+  font: 10px sans-serif;
+}
+
+.beaches circle {
+  stroke: black;
+  stroke-width: 1.2px;
+}
+
 
 .circle {
   opacity: 0;
@@ -179,3 +203,4 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+  

@@ -23,7 +23,7 @@ apiUtils.updateBeachData();
 
 app.get('/', controller.sendIndex);
 //these routes are for TESTING ONLY
-app.get('/dbData', controller.sendSurfSpots);
+app.get('/fetch', controller.sendSurfSpots);
 //populates db with one-time beach data (e.g. lat/long, etc)
 app.get('/writeBeachData', crudUtils.beachDataUpdate);
 //populates db with msw surf data for respective beach (use for initial/on-demand population)
