@@ -1,8 +1,13 @@
 angular.module('app.googleMapController', [])
   .controller('GoogleMapController', function($scope, MapService, d3Service) {
 
+    // $scope.spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
+    // $scope.spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
+    $scope.spotColors = ['#E6FAF5', '#99EBD6', '#4DDBB8', '#00CC99', '#008F6B'];
 
-    $scope.spotColors = ['#3EFFF3', '#48E897', '#5CFF63', '#9AE848', '#FFFC54'];
+    $scope.open = function () {
+      console.log('open clicked',this);
+    }
 
     d3Service.d3().then(function(d3) {      
       var map = new google.maps.Map(d3.select('#map').node(), {
@@ -51,7 +56,7 @@ angular.module('app.googleMapController', [])
         var overlay = new google.maps.OverlayView();
         
         overlay.onAdd = function () {
-          var layer = d3.select(this.getPanes().overlayLayer).append('div')
+          var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
             .attr('class', 'beaches');
 
           overlay.draw = function () {
@@ -65,17 +70,21 @@ angular.module('app.googleMapController', [])
                 .each(transform)
                 .attr('class', 'marker');
 
+
             marker.append('svg:circle')
               .attr('r', 4.5)
               .attr('cx', padding)
               .attr('cy', padding)
-              .attr('fill', function(d) { return $scope.spotColors[d.forecastData[0].solidRating] })
+              .attr('fill', function(d) { 
+                if (!d.value.forecastData.length) {
+                  return $scope.spotColors[0];
+                }
+                else {
+                  return $scope.spotColors[d.value.forecastData[0].solidRating];
+                }
+              })
+              .call(addListener);
 
-            marker.append('svg:text')
-              .attr('x', padding + 7)
-              .attr('y', padding)
-              .attr('dy', '.31em')
-              .text(function(d) { return d.beachname; });
 
             function transform(d) {
               d = new google.maps.LatLng(d.value.lat, d.value.lon);
@@ -84,10 +93,13 @@ angular.module('app.googleMapController', [])
                   .style('left', (d.x - padding) + 'px')
                   .style('top', (d.y - padding) + 'px');
             }
+            function addListener(d) {
+              google.maps.event.addDomListener(this, 'click', $scope.open);
+            }
           };
         };
         overlay.setMap(map);
-      });
+      })
     });
   });
 >>>>>>> (feat) markers on the map are now dynamic d3 svgs

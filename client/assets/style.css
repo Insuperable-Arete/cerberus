@@ -403,15 +403,13 @@ html, body, #map {
   position: absolute; }
 
 .beaches svg {
-  width: 60px;
-  height: 20px;
-  padding-right: 100px;
+  width: 15px;
+  height: 15px;
   font: 10px sans-serif; }
 
 .beaches circle {
-  fill: brown;
   stroke: black;
-  stroke-width: 1.5px; }
+  stroke-width: 1.2px; }
 
 .circle, .cloud-1, .cloud-2, .cloud-3 {
   opacity: 0;
