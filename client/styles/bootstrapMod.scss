@@ -9,6 +9,7 @@
 }
 .navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
   color: white !important;
+  z-index: 2;
 }
 .search-board {
   position: absolute;
