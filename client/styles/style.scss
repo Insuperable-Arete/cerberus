@@ -1,8 +1,12 @@
 // import a css reset
 @import "../lib/normalize-scss/normalize";
 @import "bootstrapMod";
-// @import "loading";
+@import "loading";
 
+.fadeOut{
+  @extend .overlay;
+  animation: fadeOut 2s 1 forwards;
+}
 .nav, .pagination, .carousel, .panel-title a {
   cursor: pointer;
 }
@@ -161,34 +165,16 @@ html, body, #map{
   background-color: black;
   top: 63px;
 }
-
-.overlay {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background: white;
-  // opacity: 0.8;
-  // filter: alpha(opacity=80);
-  z-index: 2;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-.loading path {
-  animation-name: draw;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  stroke-dasharray: 300;
-  fill: white;
-  stroke-dashoffset: 300;
-  stroke: black;
-  animation-timing-function: linear;
-}
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
+}
+@keyframes fadeOut {
+  0% { opacity: 1; display: block; }
+  100% {
+    opacity: 0;
+    display: none !important;
+  }
 }
 @keyframes waveIn {
   0% {

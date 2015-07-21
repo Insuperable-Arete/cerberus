@@ -1,5 +1,5 @@
 angular.module('app.googleMapController', [])
-  .controller('GoogleMapController', function($scope, $modal, MapService, d3Service) {
+  .controller('GoogleMapController', function($scope, $modal, MapService, d3Service, MapService) {
 
     // $scope.spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
     // $scope.spotColors = ['#F0FFFA', '#C2FFEB', '#94FFDB', '#66FFCC', '#3D997A'];
@@ -31,7 +31,7 @@ angular.module('app.googleMapController', [])
     };
 
     // All d3 renderings must be done after injecting the d3 library into the controller by calling d3Service.d3()
-    d3Service.d3().then(function(d3) {      
+    d3Service.d3().then(function(d3) {
       var map = new google.maps.Map(d3.select('#map').node(), {
         zoom: 6,
         center: new google.maps.LatLng(36.958, -119.2658)
@@ -40,7 +40,7 @@ angular.module('app.googleMapController', [])
       MapService.getBeachData().then(function (beaches) {
 
         var overlay = new google.maps.OverlayView();
-        
+
         overlay.onAdd = function () {
           var layer = d3.select(this.getPanes().overlayMouseTarget).append('div')
             .attr('class', 'beaches');
@@ -61,7 +61,7 @@ angular.module('app.googleMapController', [])
               .attr('r', 4.5)
               .attr('cx', padding)
               .attr('cy', padding)
-              .attr('fill', function(d) { 
+              .attr('fill', function(d) {
                 if (!d.value.forecastData.length) {
                   return $scope.spotColors[0];
                 }
@@ -69,7 +69,7 @@ angular.module('app.googleMapController', [])
                   return $scope.spotColors[d.value.forecastData[0].solidRating];
                 }
               })
-              .attr('forecast', function(d) { 
+              .attr('forecast', function(d) {
                 $scope.forecastData = d.value.forecastData
                 return JSON.stringify(d.value.forecastData);
               })
@@ -97,5 +97,6 @@ angular.module('app.googleMapController', [])
         };
         overlay.setMap(map);
       });
-    });
+    })
+    .then(MapService.markersLoaded());
   });

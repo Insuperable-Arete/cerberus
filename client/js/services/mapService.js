@@ -1,5 +1,6 @@
 angular.module('app.mapService', [])
-  .service('MapService', function($http) {
+  .service('MapService', function($http, $rootScope) {
+
     var getBeachData = function() {
       return $http({
         method: 'GET',
@@ -9,7 +10,12 @@ angular.module('app.mapService', [])
       });
     };
 
+    var markersLoaded = function() {
+      $rootScope.$broadcast('map loaded');
+    };
+
     return {
-      getBeachData: getBeachData
+      getBeachData: getBeachData,
+      markersLoaded: markersLoaded
     };
   });
