@@ -17,9 +17,10 @@ html(lang="en" ng-app="app")
         a.mswPower.navbar-brand.navbar-right(href="http://magicseaweed.com")
           img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
     .well.search-board.left-board
-      form
-        input(placeholder="Search for a surf spot")
-        button.btn.btn-info.
+      form(ng-controller="TypeAheadController")
+        input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
+        //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
+        button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
           Icon
     rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
     div(ui-view id="map")

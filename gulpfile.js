@@ -32,12 +32,12 @@ gulp.task("test", function(done){
 });
 
 // evaluates accessibility features in html
-gulp.task('audit', function () {
-  // return gulp.src('./**/*.html')
-  return gulp.src("./client/html/index.html")
-  .pipe(a11y())
-  .pipe(a11y.reporter());
-});
+// gulp.task('audit', function () {
+//   // return gulp.src('./**/*.html')
+//   return gulp.src("./client/html/index.html")
+//   .pipe(a11y())
+//   .pipe(a11y.reporter());
+// });
 
 gulp.task("sass", function(){
   return gulp.src("./client/styles/style.scss")
@@ -64,8 +64,8 @@ gulp.task("serve", function () {
   });
 });
 
-gulp.task("default", ["sass", "jade", "lint", "audit", "serve"], function(){
+// gulp.task("default", ["sass", "jade", "lint", "audit", "serve"], function(){
+gulp.task("default", ["sass", "jade", "lint", "serve"], function(){
   "gulp says hi"
 });
-
-
+// TODO checkout karma version and how they mess up travis

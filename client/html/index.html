@@ -40,23 +40,25 @@
       </div>
     </nav>
     <div class="well search-board left-board">
-      <form>
-        <input placeholder="Search for a surf spot">
-        <button class="btn btn-info">Icon</button>
+      <form ng-controller="TypeAheadController">
+        <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
+        <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Icon</button>
       </form>
     </div>
     <rzslider rz-slider-model="distanceSlider" rz-slider-ceil="100"></rzslider>
     <div ui-view id="map"></div>
-    <script src="../lib/underscore/underscore.js"></script>
-    <!-- script(src='../lib/d3/d3.min.js')-->
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../lib/underscore/underscore.js"></script>
+    <script src="../lib/jquery/dist/jquery.js"></script>
+    <script src="../lib/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="../lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="../lib/ngmap/build/scripts/ng-map.js"></script>
     <script src="../lib/angularjs-slider/rzslider.js"></script>
     <script src="../js/controllers/homeController.js"></script>
     <script src="../js/controllers/googleMapController.js"></script>
     <script src="../js/controllers/detailsController.js"></script>
+    <script src="../js/controllers/typeAheadController.js"></script>
     <script src="../js/services/mapService.js"></script>
     <script src="../js/services/d3Service.js"></script>
     <script src="../app.js"></script>

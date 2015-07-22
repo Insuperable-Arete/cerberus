@@ -2,6 +2,7 @@ var app = angular.module('app', [
   'app.homeController',
   'app.detailsController',
   'app.googleMapController',
+  'app.typeAheadController',
   'app.mapService',
   'd3',
   'ui.router',

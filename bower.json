@@ -5,25 +5,27 @@
   "authors": [
     "jseiden <jseiden@gmail.com>"
   ],
-  "main": "./client/index.html",
+  "main": "client/index.html",
   "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "client/lib",
     "test",
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.2",
-    "d3": "~3.5.6",
-    "underscore": "~1.8.3",
-    "angular-ui-router": "~0.2.15",
-    "normalize-scss": "~3.0.3",
-    "ngmap": "~1.7.11",
     "angular-bootstrap": "~0.13.0",
+    "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
-    "angular-mocks": "~1.4.3",
+    "d3": "~3.5.6",
+    "ngmap": "~1.7.11",
+    "normalize-scss": "~3.0.3",
+    "typeahead.js": "~0.11.1",
+    "underscore": "~1.8.3",
+    "jquery": "~2.1.4",
     "angularjs-slider": "~0.1.21"
   }
 }
+
