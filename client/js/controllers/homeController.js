@@ -1,7 +1,7 @@
 var home = angular.module('app.homeController', []);
 
-home.controller('HomeController', function($scope, $modal, $log, $timeout, MapService) {
-  
+
+home.controller('HomeController', function($scope, $modal, $log, $timeout, $interval, MapService) {
   var directionsDisplay;
   var map;
   var directionsService = new google.maps.DirectionsService();
@@ -9,7 +9,19 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
   $scope.distanceSlider = 100;
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
+  $scope.counter = "TEN";
   $scope.$on('map loaded', function() {
+    var decrementCounter = $interval(function() {
+      if (typeof $scope.counter === "string") {
+        $scope.counter = 10;
+      }
+      if ($scope.counter > 1) {
+        $scope.counter = $scope.counter - 1;
+      } else {
+        $scope.counter = "";
+        $interval.cancel(decrementCounter);
+      }
+    }, 1000);
     $timeout(function() {
       $scope.mapLoaded = true;
       $timeout(function() {
@@ -29,7 +41,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
     } else {
       handleNoGeolocation(false);
     }
-    // can build additional error handling within this 
+    // can build additional error handling within this
     function handleNoGeolocation(errorFlag) {
       if (errorFlag) {
         console.log('Error: the Geolocation service failed');
@@ -38,7 +50,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
       }
     }
   }
-  
+
   // loc will be a twople representing [lat, lng]
   // distance will be a number of miles
   $scope.getBestWavesFromLoc = function (loc, distance) {
@@ -46,7 +58,7 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, MapSe
       loc = new google.maps.LatLng(loc[0], loc[1]);
       var beachesWithinDistance = _.filter(beaches, function(beach) {
         var beachCoords = new google.maps.LatLng(beach.lat, beach.lon);
-        // computeDistanceBetween returns a distance in meters, must convert to mi to 
+        // computeDistanceBetween returns a distance in meters, must convert to mi to
         beach.distance = google.maps.geometry.spherical.computeDistanceBetween(loc, beachCoords) * 0.00062137;
         beach.coords = beachCoords;
         return beach.distance <= distance;
