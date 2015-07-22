@@ -30,6 +30,48 @@ angular.module('app.googleMapController', [])
       });
     };  
 
+    $scope.showTitle = function () {
+
+      console.log('entered spot');
+      var padding = parseInt( this.getAttribute('cx'));
+      var beachName = this.getAttribute('name').split('"')[1];
+
+      console.log(this.parentElement);
+
+      var text = d3.select(this.parentElement)
+        .append('svg:text')
+        .attr('x', padding + 9)
+        .attr('y', padding)
+        .attr('dy', '.31em')
+        .attr('opacity', 0)
+        .text(beachName);
+
+      text
+        .transition()
+        .duration(300)
+        .attr('opacity', 1)
+      
+      d3.select(this)
+        .transition()
+        .duration(300)
+        .attr('r', 8);
+    }
+
+    $scope.hideTitle = function() {
+      d3.select(this.parentElement)
+        .selectAll('text')
+        .transition()
+        .duration(1500)
+        .style('opacity', 0)
+        .remove();
+
+      d3.select(this)
+        .transition()
+        .duration(1500)
+        .attr('r', 4.5);
+
+    }
+
     $scope.renderMarkers = function () {
       // All d3 renderings must be done after injecting the d3 library into the controller by calling d3Service.d3()
       d3Service.d3().then(function(d3) {      
@@ -85,7 +127,6 @@ angular.module('app.googleMapController', [])
                 })
                 .each(addListener);
 
-
               function transform(d) {
                 d = new google.maps.LatLng(d.value.lat, d.value.lon);
                 d = projection.fromLatLngToDivPixel(d);
@@ -94,8 +135,10 @@ angular.module('app.googleMapController', [])
                     .style('top', (d.y - padding) + 'px');
               }
               function addListener(d) {
-                console.log('add listener called')
+                console.log('event listener follow...');
                 google.maps.event.addDomListener(this, 'click', $scope.open);
+                google.maps.event.addDomListener(this, 'mouseover', $scope.showTitle);
+                google.maps.event.addDomListener(this, 'mouseout', $scope.hideTitle);
               }
             };
           };
