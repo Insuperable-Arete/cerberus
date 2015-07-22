@@ -2,6 +2,7 @@
 @import "../lib/normalize-scss/normalize";
 @import "bootstrapMod";
 @import "loading";
+@import "sideMenu";
 
 .fadeOut{
   @extend .overlay;

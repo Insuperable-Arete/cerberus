@@ -10,6 +10,13 @@ home.controller('HomeController', function($scope, $modal, $log, $timeout, $inte
   $scope.mapLoaded = false;
   $scope.animationFinished = false;
   $scope.counter = "TEN";
+
+  $scope.sideMenu = false;
+
+  $scope.toggleClass = function() {
+    $scope.sideMenu = !$scope.sideMenu;
+  }
+
   $scope.$on('map loaded', function() {
     var decrementCounter = $interval(function() {
       if (typeof $scope.counter === "string") {

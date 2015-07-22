@@ -4,26 +4,34 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
-      include loading
-      //- img.center(src="../assets/loading.svg")
-    nav.navbar.navbar-inverse
-      .container-fluid
-        .navbar-header
-          a.navbar-brand(href="#").
-            Cerferus
-          p.navbar-text.navbar-left.
-            Gnar Swells, Brah
-        a.mswPower.navbar-brand.navbar-right(href="http://magicseaweed.com")
-          img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
-    .well.search-board.left-board
-      form(ng-controller="TypeAheadController")
-        input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
-        //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-        button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-          Icon
-    rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
-    div(ui-view id="map")
+    #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
+      #site-canvas
+        #site-menu
+          h2.
+            Hello Menu!
+          p.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.
+        div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+          include loading
+        nav.navbar.navbar-inverse
+          .container-fluid
+            .navbar-header
+              a.navbar-brand(href="#").
+                Cerferus
+              p.navbar-text.navbar-left.
+                Gnar Swells, Brah
+            button(href="#" ng-click="toggleClass()").
+              Do Something
+            a.mswPower.navbar-brand.navbar-right(href="http://magicseaweed.com")
+              img(src="http://im-1-uk.msw.ms/msw_powered_by.png")
+        .well.search-board.left-board
+          form(ng-controller="TypeAheadController")
+            input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
+            //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
+            button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
+              Icon
+        rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
+        div(ui-view id="map")
     //- Using include instead of extends
     //- block scripts
     include dependencies
