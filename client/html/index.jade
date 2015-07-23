@@ -1,6 +1,6 @@
 doctype html
 html(lang="en" ng-app="app")
-  head
+  conhead
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
@@ -27,7 +27,8 @@ html(lang="en" ng-app="app")
             input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
             //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
             button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-              Icon
+              Search 
+        rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
         div(ui-view id="map")
     //- Using include instead of extends
     //- block scripts
