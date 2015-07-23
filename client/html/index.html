@@ -8,45 +8,54 @@
     <script src="http://maps.google.com/maps/api/js?sensor=true&amp;libraries=geometry"></script>
   </head>
   <body ng-controller="HomeController">
-    <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished">
-      <svg viewbox="0 0 600 300" class="svg-defs">
-        <!-- Symbol with text-->
-        <symbol id="s-text">
-          <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">HANG TEN</text>
-        </symbol>
-        <!-- Mask with text-->
-        <mask id="m-text" maskunits="userSpaceOnUse" maskcontentunits="userSpaceOnUse">
-          <rect width="100%" height="100%" class="mask__shape"></rect>
-          <use xlink:href="#s-text" class="mask__text"></use>
-        </mask>
-      </svg>
-      <div class="box-with-text">
-        <!-- Container for video-->
-        <div class="text-fill">
-          <video src="http://zacharylester.com/tube.mp4" autoplay="" loop="" muted="" class="video"></video>
+    <div id="site-wrapper" ng-class="sideMenu ? 'show-nav' : ''">
+      <div id="site-canvas">
+        <div id="site-menu">
+          <h2>Hello Menu!</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed felis tempus, tempor massa nec, sollicitudin sapien. Suspendisse potenti. Praesent quis urna at sem varius aliquam maximus eu ipsum. Sed facilisis consectetur lectus, vitae congue libero aliquet vitae. Vestibulum posuere odio ut lacus pharetra, sit amet elementum dolor sagittis. Fusce maximus leo ac felis faucibus auctor. Maecenas sollicitudin dui quis eros dictum, a pellentesque velit laoreet. Aenean tempus massa et nisl pulvinar, et tempor lacus vehicula.</p>
         </div>
-        <!-- Visible SVG-->
-        <svg viewbox="0 0 600 300" class="svg-inverted-mask">
-          <rect width="100%" height="100%" mask="url(#m-text)" class="shape--fill"></rect>
-          <use xlink:href="#s-text" class="text--transparent"></use>
-        </svg>
+        <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="animationFinished">
+          <svg viewbox="0 0 600 300" class="svg-defs">
+            <!-- Symbol with text-->
+            <symbol id="s-text">
+              <text text-anchor="middle" x="50%" y="50%" dy=".35em" class="text">HANG {{counter}}</text>
+            </symbol>
+            <!-- Mask with text-->
+            <mask id="m-text" maskunits="userSpaceOnUse" maskcontentunits="userSpaceOnUse">
+              <rect width="100%" height="100%" class="mask__shape"></rect>
+              <use xlink:href="#s-text" class="mask__text"></use>
+            </mask>
+          </svg>
+          <div class="box-with-text">
+            <!-- Container for video-->
+            <div class="text-fill">
+              <video src="http://zacharylester.com/tube.mp4" autoplay="" loop="" muted="" class="video"></video>
+            </div>
+            <!-- Visible SVG-->
+            <svg viewbox="0 0 600 300" class="svg-inverted-mask">
+              <rect width="100%" height="100%" mask="url(#m-text)" class="shape--fill"></rect>
+              <use xlink:href="#s-text" class="text--transparent"></use>
+            </svg>
+          </div>
+        </div>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
+              <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
+            </div>
+            <button href="#" ng-click="toggleClass()">Do Something</button><a href="http://magicseaweed.com" class="mswPower navbar-brand navbar-right"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
+          </div>
+        </nav>
+        <div class="well search-board left-board">
+          <form ng-controller="TypeAheadController">
+            <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
+            <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Icon</button>
+          </form>
+        </div>
+        <rzslider rz-slider-model="distanceSlider" rz-slider-ceil="100"></rzslider>
+        <div ui-view id="map"></div>
       </div>
     </div>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header"><a href="#" class="navbar-brand">Cerferus</a>
-          <p class="navbar-text navbar-left">Gnar Swells, Brah</p>
-        </div><a href="http://magicseaweed.com" class="mswPower navbar-brand navbar-right"><img src="http://im-1-uk.msw.ms/msw_powered_by.png"></a>
-      </div>
-    </nav>
-    <div class="well search-board left-board">
-      <form ng-controller="TypeAheadController">
-        <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
-        <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Icon</button>
-      </form>
-    </div>
-    <rzslider rz-slider-model="distanceSlider" rz-slider-ceil="100"></rzslider>
-    <div ui-view id="map"></div>
     <script src="../lib/angular/angular.js"></script>
     <script src="../lib/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../lib/underscore/underscore.js"></script>

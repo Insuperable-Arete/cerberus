@@ -82,3 +82,57 @@ describe("HomeController", function(){
   // });
 
 });
+
+describe("GoogleMapController", function() {
+  beforeEach(module('app'));
+
+  var $controller;
+  var MapService;
+  var d3Service;
+
+  beforeEach(inject(function(_$controller_, _$modal_, _MapService_, _d3Service_) {
+    $controller = _$controller_;
+    $modal = _$modal_;
+    MapService = _MapService_;
+    d3Service = _d3Service_;
+  }));
+
+  var $scope = {};
+  //
+  beforeEach(inject(function() {
+    var controller = $controller('GoogleMapController', {
+      $scope: $scope,
+      $modal: $modal,
+      MapService: MapService,
+      d3Service: d3Service
+    })
+  }))
+  describe("$scope.open", function() {
+    it("is a function", function() {
+      expect(typeof $scope.open).toBe('function');
+    })
+  })
+});
+
+describe("MapService", function() {
+  beforeEach(module('app'));
+
+  var $http;
+  var $rootScope;
+  var MapService;
+
+  beforeEach(inject(function(_$http_, _$rootScope_, _MapService_) {
+    $http = _$http_;
+    $rootScope = _$rootScope_;
+    MapService = _MapService_;
+  }))
+
+  describe("getBeachData", function() {
+    it("is a function", function() {
+      expect(typeof MapService.getBeachData).toBe('function');
+    })
+    it("GETs beach data object", function() {
+      expect(typeof MapService.getBeachData()).toBe('object');
+    })
+  })
+});

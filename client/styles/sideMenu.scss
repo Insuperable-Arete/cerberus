@@ -1,0 +1,30 @@
+#site- {
+  &wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 728px;
+  }
+  &canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateX(0);
+    transition: .3s ease all;
+  }
+  &menu {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -300px;
+    background-color: teal;
+    padding: 15px;
+    z-index: 5;
+  }
+}
+
+#site-wrapper.show-nav #site-canvas {
+  -webkit-transform: translateX(300px);
+  transform: translateX(300px);
+}
