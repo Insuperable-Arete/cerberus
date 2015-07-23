@@ -222,7 +222,7 @@ html, body, #map{
 
 rzslider {
   position: absolute;
-  top: 850px;
+  bottom: 0;
   left: 20px;
   width: 80px;
   z-index: 1;
@@ -231,4 +231,3 @@ rzslider {
 rzslider span.rz-bubble.rz-limit {
   font-size: 0;
 }
-
