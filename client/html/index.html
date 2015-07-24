@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
-  <head>
+  <conhead>
     <title>Gnar Swells, Brah</title>
     <link rel="stylesheet" type="text/css" href="../lib/angularjs-slider/dist/rzslider.css">
     <link rel="stylesheet" type="text/css" href="../lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/style.css">
-  </head>
+  </conhead>
   <body ng-controller="HomeController">
     <div ng-attr-class="{{mapLoaded &amp;&amp; 'fadeOut' || 'overlay' }}" ng-hide="true">
       <svg viewbox="0 0 600 300" class="svg-defs">
@@ -92,7 +92,7 @@
         <div class="well search-board left-board">
           <form ng-controller="TypeAheadController">
             <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach">
-            <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Icon</button>
+            <button ng-click="zoomToBeach(searchBeach)" class="btn btn-info">Search </button>
           </form>
         </div>
         <div ui-view id="map"></div>
