@@ -1,3 +1,4 @@
+// dependencies 
 var gulp = require("gulp");
 var jade = require("gulp-jade");
 var sass = require("gulp-sass");
