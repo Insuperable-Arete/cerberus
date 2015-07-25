@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 //mongoose config
 mongoURI = 'mongodb://localhost/thesis'
-mongoose.connect(mongoURI);
+mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
 
 //opens initial connection
 //Run in seperate terminal window using " mongod --dbpath . " in "./db" directory
