@@ -4,14 +4,9 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-<<<<<<< HEAD
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
-=======
-    //div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
->>>>>>> (fix) add favicon, update routes and other minor fixes
+    div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
       include loading 
-    //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+    //- div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
         #site-menu
