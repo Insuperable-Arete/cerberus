@@ -1,5 +1,5 @@
 angular.module('d3', [])
-  .service('d3Service', ['$document', '$q', '$rootScope', 
+  .service('d3Service', ['$document', '$q', '$rootScope',
     function($document, $q, $rootScope) {
       var d = $q.defer();
 
@@ -11,11 +11,11 @@ angular.module('d3', [])
 
       var scriptTag = $document[0].createElement( 'script' );
       scriptTag.async = true;
-      scriptTag.src = "http://d3js.org/d3.v3.min.js";
+      scriptTag.src = "https://d3js.org/d3.v3.min.js";
       scriptTag.onreadystatechange = function () {
         if (this.readyState === 'complete') {
           onScriptLoad();
-        } 
+        }
       };
       scriptTag.onload = onScriptLoad;
 
