@@ -8,7 +8,7 @@ angular.module('app.mapService', [])
       return $http({
         method: 'GET',
         // url: 'http://localhost:1337/fetch'
-        url: 'hidden-spire-5820.herokuapp.com/fetch'
+        url: '/fetch'
       }).then(function (resp) {
         return resp.data;
       });
