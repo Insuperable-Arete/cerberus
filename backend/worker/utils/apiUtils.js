@@ -44,28 +44,6 @@ exports.beachDataReq = function(){
 
 //////////////////////expeirmental///////
 /////////////////
-var testRecurse = function(func, time){
-  
-    Beach.find({})
-      .then(function(data){
-        function recurse(ind){
-          if (ind === data.length) return;
-          var beach = data[ind];
-          console.log(beach);
-          func(beach)
-            .then(function(success){
-              console.log('Data written!');
-              setTimeOut ( function(){recurse(ind+1)}, time )
-            })
-            .catch(function(error){
-              console.log('error');
-            })
-        }
-        recurse(0);
-      })
-  
-};
-
 var getTweet = function(lat, lon, cb){ 
 
   var client = new Twitter({
@@ -92,22 +70,40 @@ var getTweetText = function(obj){
   })
 };
 
-var getTweets = function(beach){
-  getTweetAsync(beach.lat, beach.lon)
-    .then(function(tweets){
-      var tweetText = getTweetText(tweets);
-      console.log('reached');
-      Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
-        .then(function(success){
-          console.log('Tweet data written!', tweetText);
-
-        })
+var testRecurse = function(func, time){
+  Beach.find({})
+    .then(function(data){
+      function recurse(ind){
+        if (ind === data.length) return;
+        var beach = data[ind];
+        func(beach)
+          .then(function(success){
+            console.log('Data written!');
+            setTimeout ( function(){recurse(ind+1)}, time )
+          })
+          .catch(function(error){
+            console.log('----------', error);
+          })
+      }
+      recurse(0);
     })
 };
 
 
+var getTweets = function(beach, cb){
+  getTweetAsync(beach.lat, beach.lon)
+    .then(function(tweets){
+      var tweetText = getTweetText(tweets);
+      Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+        .then(function(error, success){
+          console.log('Tweet data written!', tweetText);
+          //seems like these two arguments should be swtiched in order
+          cb(success, error)
+        })
+    })
+};
 var getTweetsAsync = Promise.promisify(getTweets);
-//console.log(getTweetsAsync);
+
 testRecurse(getTweetsAsync, 60100)
 
 
