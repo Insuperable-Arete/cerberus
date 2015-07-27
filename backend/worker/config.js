@@ -12,7 +12,7 @@ var app = express();
 //enable the below function if you want interval surf data updates
 //apiUtils.updateBeachData();
 
-crudUtils.writeBeachEntries();
+//crudUtils.writeBeachEntries();
 
 
 app.get('/requestBeachData', apiUtils.beachDataReq);

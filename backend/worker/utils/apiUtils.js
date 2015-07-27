@@ -10,6 +10,9 @@ var Beach = require('../../db/models/beach.js');
 
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
+
+//////////working MSW util///////////
+///////////
 exports.beachDataReq = function(){
   Beach.find({})
     .then(function(data){
@@ -39,7 +42,26 @@ exports.beachDataReq = function(){
     })
 };
 
-var getTweets = function(lat, lon, cb){ 
+//////////////////////expeirmental///////
+/////////////////
+var testRecurse = function(func, time){
+  return function(){
+    Beach.find({})
+      .then(function(data){
+        (function recurse(ind){
+          if (ind === data.length) return;
+          var beach = data[ind];
+          func(beach)
+            .then(function(success){
+              console.log('Data written!');
+              setTimeOut (function(){recurse(ind+1)}, time)
+            })
+        })(0)
+      })
+  }
+};
+
+var getTweet = function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -56,36 +78,34 @@ var getTweets = function(lat, lon, cb){
 };
 
 
-exports.tweets = function(){
+var getTweetText = function(obj){
+  return _.map(obj.statuses, function(tweet){
+    return tweet.text;
+  })
+};
 
-  var getTweetsAsync = Promise.promisify(getTweets);
+var getTweets = function(beach){
+  console.log(beach);
+  getTweetAsync(beach.lat, beach.lon)
+    .then(function(tweets){
+      var tweetText = getTweetText(tweets);
+      console.log('reached');
+      Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+        .then(function(success){
+          console.log('Tweet data written!', tweetText);
 
-  var getTweetText = function(obj){
-    return _.map(obj.statuses, function(tweet){
-      return tweet.text;
-    })
-  };
-
-  Beach.find({})
-    .then(function(data){
-      (function recurse(ind){
-        if (ind === data.length) return;
-        var beach = data[ind];
-        getTweetsAsync(beach.lat, beach.lon)
-          .then(function(tweets){
-            var tweetText = getTweetText(tweets);
-            Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
-              .then(function(success){
-                console.log('Tweet data written!', tweetText);
-                setTimeout (function(){recurse(ind+1)}, 60010);
-              })
-              .catch(function(err){
-                throw err;
-              })
-          })
-        })(0)
+        })
     })
 };
+
+var getTweetAsync = Promise.promisify(getTweets);
+var getTweetsAsync = Promise.promisify(getTweets);
+//console.log(getTweetsAsync);
+var recurseTweet = testRecurse(getTweetsAsync, 60010);
+recurseTweet();
+
+/////////////////cron scheduler//////
+////////////
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
