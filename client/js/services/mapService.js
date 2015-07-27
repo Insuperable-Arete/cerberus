@@ -3,6 +3,7 @@ angular.module('app.mapService', [])
 
     var map;
     var beachCache;
+    var currentBeach;
 
     var getBeachData = function() {
       return $http({
@@ -82,14 +83,22 @@ angular.module('app.mapService', [])
       map.setZoom(11);
       // map.setCenter({lat: -34.397, lng: 150.644});
       console.log(map);
-
     };
 
-    var printBounds = function(){
-      console.log(map.getBounds());
+    var setCurrentBeach = function(beach){
+      for(var i = 0; i < beachCache.length; i++){
+        if(beachCache[i].beachname === beach){
+          currentBeach = beachCache[i];
+        }
+      }
     };
 
-    
+    var getCurrentBeach = function(){
+      return currentBeach;
+    };
+
+
+
 
     return {
       getBeachData: getBeachData,
@@ -99,6 +108,9 @@ angular.module('app.mapService', [])
       setBeachCache: setBeachCache,
       getBeachCache: getBeachCache,
       getLocalTimeStamps: getLocalTimeStamps,
-      zoomToBeach: zoomToBeach
+      zoomToBeach: zoomToBeach,
+      setCurrentBeach: setCurrentBeach,
+      getCurrentBeach: getCurrentBeach
     };
+
   });
