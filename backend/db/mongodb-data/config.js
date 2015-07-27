@@ -2,9 +2,6 @@
 var mongoose = require('mongoose');
 //mongoose config
 
-// mongoURI = 'mongodb://localhost/thesis'
-// mongoose.connect(process.env.MONGOLAB_URI || mongoURI);
-
 mongoURI = 'mongodb://45.55.14.80:27017/thesis';
 mongoose.connect(mongoURI || 'mongodb://localhost/thesis');
 
