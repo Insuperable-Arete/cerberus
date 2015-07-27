@@ -1,3 +1,4 @@
+// dependencies here 
 var gulp = require("gulp");
 var jade = require("gulp-jade");
 var sass = require("gulp-sass");
@@ -17,6 +18,7 @@ gulp.task("lint", function(){
   .pipe(jshint.reporter("jshint-stylish"));
 });
 
+// compiles jade to html
 gulp.task("jade", function(){
   return gulp.src("./client/html/index.jade")
   .pipe(jade({
@@ -27,6 +29,7 @@ gulp.task("jade", function(){
   }));
 });
 
+// runs tests
 gulp.task("test", function(done){
   new Server({
     configFile: __dirname + '/karma.conf.js',
@@ -42,6 +45,7 @@ gulp.task("test", function(done){
 //   .pipe(a11y.reporter());
 // });
 
+// compiles sass to css
 gulp.task("sass", function(){
   return gulp.src("./client/styles/style.scss")
     .pipe(sass({

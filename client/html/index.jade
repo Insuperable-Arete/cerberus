@@ -4,9 +4,9 @@ html(lang="en" ng-app="app")
     title Gnar Swells, Brah
     include preload
   body(ng-controller="HomeController")
-    div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="true")
+    div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
       include loading 
-    //- div.overlay(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
+    //- div(ng-attr-class="{{mapLoaded && 'fadeOut' || 'overlay' }}" ng-hide="animationFinished")
     #site-wrapper(ng-class="sideMenu ? 'show-nav' : ''")
       #site-canvas
         #site-menu
@@ -25,9 +25,9 @@ html(lang="en" ng-app="app")
         .well.search-board.left-board
           form(ng-controller="TypeAheadController")
             input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
-            //- button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
             button.btn.btn-info(ng-click=("zoomToBeach(searchBeach)")).
-              Icon
+              Search 
+        //- rzslider(rz-slider-model="distanceSlider" rz-slider-ceil="100")
         div(ui-view id="map")
     //- Using include instead of extends
     //- block scripts

@@ -1,5 +1,5 @@
 angular.module('d3', [])
-  .service('d3Service', ['$document', '$q', '$rootScope', 
+  .service('d3Service', ['$document', '$q', '$rootScope',
     function($document, $q, $rootScope) {
       var d = $q.defer();
 
@@ -15,7 +15,7 @@ angular.module('d3', [])
       scriptTag.onreadystatechange = function () {
         if (this.readyState === 'complete') {
           onScriptLoad();
-        } 
+        }
       };
       scriptTag.onload = onScriptLoad;
 
