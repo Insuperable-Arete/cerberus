@@ -45,20 +45,25 @@ exports.beachDataReq = function(){
 //////////////////////expeirmental///////
 /////////////////
 var testRecurse = function(func, time){
-  return function(){
+  
     Beach.find({})
       .then(function(data){
-        (function recurse(ind){
+        function recurse(ind){
           if (ind === data.length) return;
           var beach = data[ind];
+          console.log(beach);
           func(beach)
             .then(function(success){
               console.log('Data written!');
-              setTimeOut (function(){recurse(ind+1)}, time)
+              setTimeOut ( function(){recurse(ind+1)}, time )
             })
-        })(0)
+            .catch(function(error){
+              console.log('error');
+            })
+        }
+        recurse(0);
       })
-  }
+  
 };
 
 var getTweet = function(lat, lon, cb){ 
@@ -77,6 +82,9 @@ var getTweet = function(lat, lon, cb){
   });
 };
 
+var getTweetAsync = Promise.promisify(getTweet);
+
+
 
 var getTweetText = function(obj){
   return _.map(obj.statuses, function(tweet){
@@ -85,7 +93,6 @@ var getTweetText = function(obj){
 };
 
 var getTweets = function(beach){
-  console.log(beach);
   getTweetAsync(beach.lat, beach.lon)
     .then(function(tweets){
       var tweetText = getTweetText(tweets);
@@ -98,11 +105,11 @@ var getTweets = function(beach){
     })
 };
 
-var getTweetAsync = Promise.promisify(getTweets);
+
 var getTweetsAsync = Promise.promisify(getTweets);
 //console.log(getTweetsAsync);
-var recurseTweet = testRecurse(getTweetsAsync, 60010);
-recurseTweet();
+testRecurse(getTweetsAsync, 60100)
+
 
 /////////////////cron scheduler//////
 ////////////
