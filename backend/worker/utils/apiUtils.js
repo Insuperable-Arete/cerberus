@@ -61,7 +61,7 @@ var getTweetText = function(obj){
   })
 };
 
-var getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
+exports.getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -79,7 +79,7 @@ var getTweetAsync = Promise.promisify( function(lat, lon, cb){
 });
 
 var getTweetsAsync = Promise.promisify( function(beach, cb){
-  getTweetAsync(beach.lat, beach.lon)
+  exports.getTweetAsync(beach.lat, beach.lon)
     .then(function(tweets){
       var tweetText = getTweetText(tweets);
       Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})

@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 var server = require('../server/config.js');
 
 var worker = require('../worker/config.js');
-var workerApiUtils = require('../worker/utils/apiUtils.js');
+var apiUtils = require('../worker/utils/apiUtils.js');
 
 var db = require('../db/mongodb-data/config.js');
 var Beach = require('../db/models/beach.js');
@@ -33,7 +33,8 @@ describe('', function() {
         request(server)
           .get('/')
           .expect(function(res){
-            expect(res.type === 'text/html').to.equal(true);
+            //expect(res.type === 'text/html').to.equal(true);
+            expect(res.type).to.equal('text/html');
           })
           .end(done);
       })
@@ -54,7 +55,7 @@ describe('', function() {
           .get('/fetch')
           .expect(200)
           .expect(function(res) {
-            expect(typeof res.body === "object").to.equal(true);
+            expect(typeof res.body).to.equal('object');
           })
           .end(done);
       });
@@ -78,7 +79,7 @@ describe('', function() {
 
       //not sure why request is necessary for checking contents of DB...
       //this test could do something more useful/helpful...
-      it('The database should be popualted', function(done) {
+      it('The database should be populated', function(done) {
         request(server)
           .get('/fetch')
           .expect(200)    
@@ -92,6 +93,23 @@ describe('', function() {
         .end(done);
       });
 
-  }); //Database
+
+
+    }); //Database
+
+    describe('API Utils', function(){
+
+      it ('getTweetAsync should return JSON', function(done){
+        apiUtils.getTweetAsync(33.9015, -118.423)
+          .then(function(success, err){
+            expect(typeof success).to.equal('object');
+            done()
+          })
+      })
+
+
+    }); //Api Utils
+
+
 
 });
