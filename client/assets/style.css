@@ -15,7 +15,7 @@
  * 3. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using
  *  `em` units.
  */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -477,6 +477,7 @@ html, body {
   animation-timing-function: linear; }
 
 #site-wrapper {
+  background-color: teal;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -493,55 +494,55 @@ html, body {
   transition: .3s ease all; }
 
 #site-menu {
+  background-color: teal;
   width: 300px;
   height: 100%;
   position: absolute;
   top: 0;
   left: -300px;
-  background-color: teal;
   padding: 15px;
-  z-index: 5; }
+  z-index: 5;
+  display: none; }
+  #site-menu.show-nav {
+    display: block; }
+
+#site-tab {
+  background-color: aqua;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  bottom: -300px;
+  left: 200px;
+  z-index: 5;
+  transform: translateY(0);
+  transition: .3s ease all; }
+  #site-tab.show-tab {
+    transform: translateY(-300px); }
+
+.tab-selector {
+  position: absolute;
+  background-color: aqua;
+  bottom: 0;
+  left: 200px;
+  width: 90px;
+  height: 30px;
+  padding: 5px;
+  z-index: 5;
+  transform: translateY(0);
+  transition: .3s ease all; }
+  .tab-selector:hover {
+    background-color: black;
+    color: white; }
+  .tab-selector.show-tab {
+    transform: translateY(-300px); }
+
+.tab-content {
+  background-color: aqua;
+  padding: 15px;
+  position: absolute; }
 
 .fadeOut {
   animation: fadeOut 2s 1 forwards; }
-
-.nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer; }
-
-html, body, #map {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0; }
-
-.beaches, .beaches svg {
-  position: absolute; }
-
-.beaches svg {
-  width: 150px;
-  height: 20px;
-  font: 14px sans-serif;
-  font-family: 'Helvetica'; }
-
-.beaches svg text {
-  fill: white; }
-
-.beaches circle {
-  stroke: black;
-  stroke-width: 1.2px; }
-
-.winds, .winds svg {
-  position: absolute; }
-
-.winds svg {
-  width: 300px;
-  height: 300px;
-  font: 14px sans-serif;
-  font-family: 'Helvetica'; }
-
-.winds line {
-  stroke: black;
-  stroke-width: 1.2px; }
 
 .circle, .cloud-1, .cloud-2, .cloud-3 {
   opacity: 0;
@@ -579,7 +580,7 @@ html, body, #map {
   bottom: -8px;
   left: 40px; }
 
-.rectangle, .rectangle-1 {
+.rectangle, .rectangle-slow, .rectangle-fast, .rectangle-1, .rectangle-1-slow, .rectangle-1-fast {
   height: 40px;
   width: 60px;
   overflow: hidden;
@@ -587,13 +588,21 @@ html, body, #map {
   top: 25px;
   left: -60px;
   -webkit-animation-name: moveCloud, phase;
-  -webkit-animation-duration: 3s, 10s;
+  -webkit-animation-duration: 5s, 10s;
   -webkit-animation-iteration-count: infinite, infinite;
   -webkit-animation-timing-function: linear, linear; }
+  .rectangle-slow {
+    -webkit-animation-duration: 10s, 10s; }
+  .rectangle-fast {
+    -webkit-animation-duration: 2s, 10s; }
 
-.rectangle-1 {
+.rectangle-1, .rectangle-1-slow, .rectangle-1-fast {
   transform: scale(2);
   -webkit-animation-duration: 7s; }
+  .rectangle-1-slow {
+    -webkit-animation-duration: 13s; }
+  .rectangle-1-fast {
+    -webkit-animation-duration: 3s; }
 
 .center {
   position: relative;
@@ -611,19 +620,37 @@ html, body, #map {
 
 .path-1 {
   transform: translateX(-925px) scale(1.5) translateY(-40px); }
+  .path-1-small {
+    transform: translateX(-1035px) scale(1) translateY(-10px); }
+  .path-1-large {
+    transform: translateX(-1200px) scale(2) translateY(-75px); }
 
 .path-2 {
   transform: translateX(-1200px) scale(2) translateY(-40px); }
+  .path-2-small {
+    transform: translateX(-875px) scale(1.5) translateY(-20px); }
+  .path-2-large {
+    transform: translateX(-1450px) scale(2.5) translateY(-55px); }
 
-.path-3, .path-4 {
+.path-3, .path-3-slow, .path-3-fast, .path-4, .path-4-slow, .path-4-fast {
   transform: translateX(-1150px) scale(1.5) translateY(-40px);
   animation-name: waveIn;
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards; }
+  .path-3-slow {
+    animation-duration: 10s; }
+  .path-3-fast {
+    animation-duration: 2s; }
 
-.path-4 {
+.path-4, .path-4-slow, .path-4-fast {
   animation-delay: 2.5s; }
+  .path-4-slow {
+    animation-delay: 5s;
+    animation-duration: 10s; }
+  .path-4-fast {
+    animation-delay: 1s;
+    animation-duration: 2s; }
 
 .wave, .wave-1, .wave-2, .wave-3, .wave-4 {
   stroke-dasharray: 350;
@@ -709,6 +736,44 @@ html, body, #map {
   100% {
     transform: rotate(360deg); } }
 
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer; }
+
+html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+.beaches, .beaches svg {
+  position: absolute; }
+
+.beaches svg {
+  width: 150px;
+  height: 20px;
+  font: 14px sans-serif;
+  font-family: 'Helvetica'; }
+
+.beaches svg text {
+  fill: white; }
+
+.beaches circle {
+  stroke: black;
+  stroke-width: 1.2px; }
+
+.winds, .winds svg {
+  position: absolute; }
+
+.winds svg {
+  width: 300px;
+  height: 300px;
+  font: 14px sans-serif;
+  font-family: 'Helvetica'; }
+
+.winds line {
+  stroke: black;
+  stroke-width: 1.2px; }
+
 rzslider {
   margin: 20px 0 10px 0; }
 
@@ -717,3 +782,10 @@ rzslider.time-slider span.rz-bubble {
 
 rzslider.distance-slider span.rz-bubble.rz-limit {
   font-size: 0; }
+
+.modal {
+  display: block;
+  opacity: 1; }
+
+.modal-dialog {
+  height: 0; }

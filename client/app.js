@@ -1,6 +1,7 @@
 var app = angular.module('app', [
   'app.homeController',
   'app.detailsController',
+  'app.detailsSidebarController',
   'app.googleMapController',
   'app.typeAheadController',
   'app.mapService',
@@ -16,8 +17,12 @@ var app = angular.module('app', [
 .config(function($urlRouterProvider, $stateProvider) {
   $urlRouterProvider.otherwise('/');
   $stateProvider
-    .state('home', {
+    .state('default', {
       url: '/',
-      controller: 'GoogleMapController'
+    })
+  $stateProvider
+    .state('details', {
+      url: '/details',
+      controller: 'DetailsSidebarController'
     })
 });

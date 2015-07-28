@@ -1,5 +1,5 @@
 angular.module('app.animationService', [])
-  .service('AnimationService', ['$modal', '$rootScope', '$interval', 'MapService', 'd3Service', 
+  .service('AnimationService', ['$modal', '$rootScope', '$interval', 'MapService', 'd3Service',
     function($modal, $rootScope, $interval, MapService, d3Service) {
 
       // spotColors = ['#EBF5FF', '#ADD6FF', '#70B8FF', '#3399FF', '#246BB2'];
@@ -9,6 +9,7 @@ angular.module('app.animationService', [])
       function open () {
         var context = this;
         var modalInstance = $modal.open({
+          scope: $rootScope,
           animation: true,
           templateUrl: 'detailsModal.html',
           controller: 'DetailsController',
@@ -41,7 +42,7 @@ angular.module('app.animationService', [])
           .transition()
           .duration(300)
           .attr('opacity', 1);
-        
+
         d3.select(this)
           .transition()
           .duration(300)
@@ -234,9 +235,9 @@ angular.module('app.animationService', [])
             };
           };
           overlay.setMap(map);
-        });   
+        });
       };
-      
+
       return {
         renderBeaches: renderBeaches,
         renderWind: renderWind
