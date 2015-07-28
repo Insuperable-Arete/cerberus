@@ -11,40 +11,57 @@ var Beach = require('../../db/models/beach.js');
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
 
-//////////working MSW util///////////
-///////////
-exports.beachDataReq = function(){
-  Beach.find({})
-    .then(function(data){
-      (function recurse(ind){
-        if (ind === data.length) return;
-        var beach = data[ind];
-        var options = {
-          method: 'GET',
-          uri: endpoint + (beach.mswId).toString()
-        }
 
-        requestPromise(options)
-          .then(function(response){
-            console.log('passed', beach.mswId);
-            var timeFiltered = crudUtils.filterBeachDataTime(response);
-            Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
-              .then(function(success){
-                console.log('Wrote Beach Data');
-                recurse(ind + 1)
-              })
-              .catch(function(error){
-                console.log(error);
-                throw error;
-              })
-            })
-      })(0)
-    })
-};
 
 //////////////////////expeirmental///////
 /////////////////
-var getTweet = function(lat, lon, cb){ 
+
+var iterativeApiCall = function(func, time){
+  return function(){
+    Beach.find({})
+      .then(function(data){
+        (function recurse(ind){
+          if (ind === data.length){
+            console.log('Data for all beaches finished')
+            return;
+          } 
+          func(data[ind])
+            .then(function(success){
+              setTimeout ( function(){recurse(ind+1)}, time )
+            })
+            .catch(function(error){
+              console.log(error);
+            })
+        })(0)
+      })
+  }
+};
+
+var getMswAsync = Promise.promisify(function(beach, cb){
+  var options = {
+    method: 'GET', 
+    uri: endpoint + (beach.mswId).toString()
+  }
+
+  requestPromise(options)
+    .then(function(response){
+      //console.log('passed', beach.mswId);
+      var timeFiltered = crudUtils.filterBeachDataTime(response);
+      Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
+        .then(function(error, success){
+          console.log('Surf Data Written!', beach.mswId)
+          cb(success, error)
+        })
+    })
+});
+
+var getTweetText = function(obj){
+  return _.map(obj.statuses, function(tweet){
+    return tweet.text;
+  })
+};
+
+var getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -58,39 +75,10 @@ var getTweet = function(lat, lon, cb){
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
     cb(error, tweets);
   });
-};
 
-var getTweetAsync = Promise.promisify(getTweet);
+});
 
-
-
-var getTweetText = function(obj){
-  return _.map(obj.statuses, function(tweet){
-    return tweet.text;
-  })
-};
-
-var testRecurse = function(func, time){
-  Beach.find({})
-    .then(function(data){
-      function recurse(ind){
-        if (ind === data.length) return;
-        var beach = data[ind];
-        func(beach)
-          .then(function(success){
-            console.log('Data written!');
-            setTimeout ( function(){recurse(ind+1)}, time )
-          })
-          .catch(function(error){
-            console.log('----------', error);
-          })
-      }
-      recurse(0);
-    })
-};
-
-
-var getTweets = function(beach, cb){
+var getTweetsAsync = Promise.promisify( function(beach, cb){
   getTweetAsync(beach.lat, beach.lon)
     .then(function(tweets){
       var tweetText = getTweetText(tweets);
@@ -101,10 +89,11 @@ var getTweets = function(beach, cb){
           cb(success, error)
         })
     })
-};
-var getTweetsAsync = Promise.promisify(getTweets);
+});
 
-testRecurse(getTweetsAsync, 60100)
+var testTweet = iterativeApiCall(getTweetsAsync, 60100)
+var testMsw = iterativeApiCall(getMswAsync, 0);
+//testMsw();
 
 
 /////////////////cron scheduler//////

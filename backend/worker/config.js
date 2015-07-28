@@ -15,6 +15,6 @@ var app = express();
 //crudUtils.writeBeachEntries();
 
 
-app.get('/requestBeachData', apiUtils.beachDataReq);
+//app.get('/requestBeachData', apiUtils.beachDataReq);
 
 module.exports = app;
