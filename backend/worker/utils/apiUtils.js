@@ -37,7 +37,8 @@ var iterativeApiCall = function(func, time){
   }
 };
 
-var getMswAsync = Promise.promisify(function(beach, cb){
+exports.getMswAsync = Promise.promisify(function(beach, cb){
+  
   var options = {
     method: 'GET', 
     uri: endpoint + (beach.mswId).toString()
@@ -73,7 +74,7 @@ exports.getTweetAsync = Promise.promisify( function(lat, lon, cb){
   var geocode = lat + "," + lon + ",5mi";
 
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
-    cb(error, tweets);
+    cb(error, tweets, response);
   });
 
 });
@@ -92,7 +93,7 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
 });
 
 var testTweet = iterativeApiCall(getTweetsAsync, 60100)
-var testMsw = iterativeApiCall(getMswAsync, 0);
+var testMsw = iterativeApiCall(exports.getMswAsync, 0);
 //testMsw();
 
 

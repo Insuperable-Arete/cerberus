@@ -1,20 +1,22 @@
 var request = require('supertest');
 var express = require('express');
 var expect = require('chai').expect;
+var mongoose = require('mongoose');
 
 var server = require('../server/config.js');
-
 var worker = require('../worker/config.js');
 var apiUtils = require('../worker/utils/apiUtils.js');
 
 var db = require('../db/mongodb-data/config.js');
 var Beach = require('../db/models/beach.js');
 
+mongoose.connect('mongodb://localhost/test'); 
+
 describe('', function() {
 
   beforeEach(function(done) {
     request(server)
-      .get('/logout')
+      .get('/')
       .end(function(err, res) {
         done();
       });
@@ -75,7 +77,7 @@ describe('', function() {
 
     }); //Surf Data Request
 
-    describe('Database', function(){
+    describe('API Utils - DB write', function(){
 
       //not sure why request is necessary for checking contents of DB...
       //this test could do something more useful/helpful...
@@ -93,11 +95,19 @@ describe('', function() {
         .end(done);
       });
 
+      it('getTweetAsync should write surf data to the DB', function(done){
+        
+      });
+
+      it('getMswAsync should write tweet data to the DB', function(done){
+
+      });
+
 
 
     }); //Database
 
-    describe('API Utils', function(){
+    describe('API Utils - REST calls', function(){
 
       it ('getTweetAsync should return JSON', function(done){
         apiUtils.getTweetAsync(33.9015, -118.423)
@@ -105,8 +115,15 @@ describe('', function() {
             expect(typeof success).to.equal('object');
             done()
           })
-      })
+      });
 
+      it('getMswAsync should return JSON', function(done){
+        apiUtils.getMswAsync({mswId: 270})
+          .then(function(success, err){
+            expect(typeof success).to.equal('object');
+            done()
+          })
+      });
 
     }); //Api Utils
 
