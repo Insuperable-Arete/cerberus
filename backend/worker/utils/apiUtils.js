@@ -93,9 +93,6 @@ exports.getTweetAsync(33.9015, -118.423);
 // testMsw();
 
 
-/////////////////cron scheduler//////
-////////////
-
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   rule.hour = new cron.Range(0, 23, 3);
@@ -103,5 +100,3 @@ exports.updateBeachData = function(){
     exports.beachDataReq();
   });                                               
 };
-
-
