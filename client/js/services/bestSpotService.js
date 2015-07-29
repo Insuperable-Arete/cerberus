@@ -75,10 +75,12 @@ angular.module('app.bestSpotService', [])
       var renderPathToBeach = function (origin, destination) {
 
         map = MapService.getMap();
+
+        if (directionsDisplay) {
+          directionsDisplay.setMap(null);
+        }
+
         directionsDisplay = new google.maps.DirectionsRenderer();
-        directionsDisplay.setMap(map);
-        console.log('renderPathToBeach invoked...');
-        console.log('with map:', map);
 
         var options = {
           origin: origin,
@@ -94,6 +96,7 @@ angular.module('app.bestSpotService', [])
           }
         });
 
+        directionsDisplay.setMap(map);
       };
 
 
