@@ -1,6 +1,7 @@
 var request = require('supertest');
 var express = require('express');
 var expect = require('chai').expect;
+var should = require('chai').should;
 var mongoose = require('mongoose');
 
 var server = require('../server/config.js');
@@ -10,7 +11,39 @@ var apiUtils = require('../worker/utils/apiUtils.js');
 var db = require('../db/mongodb-data/config.js');
 var Beach = require('../db/models/beach.js');
 
-mongoose.connect('mongodb://localhost/test'); 
+/////////////////
+///the below is for testing CRUD operations to a "dummy" DB
+////////////
+
+
+// var dbURI = 'mongodb://localhost/dummy';
+// var Dummy = mongoose.model('Dummy', new mongoose.Schema({
+//   mswId: Number,
+//   beachname: String,
+//   forecastData: Array,
+//   tweets: Array
+// }));
+// var clearDB = require('mocha-mongoose')(dbURI);
+
+
+// describe('API Utils - DB write', function(){
+
+//   beforeEach(function(done){
+//     if (mongoose.connection.db) return done();
+//     mongoose.connect(dbURI, done);
+//   })
+
+//   it('getTweetAsync should write surf data to the DB', function(done){
+//     apiUtils.getMswAsync({mswId: 172})
+//   });
+
+//   it('getMswAsync should write tweet data to the DB', function(done){
+
+//   });
+
+
+
+// }); //Database
 
 describe('', function() {
 
@@ -77,45 +110,8 @@ describe('', function() {
 
     }); //Surf Data Request
 
-    describe('API Utils - DB write', function(){
-
-      //not sure why request is necessary for checking contents of DB...
-      //this test could do something more useful/helpful...
-      it('The database should be populated', function(done) {
-        request(server)
-          .get('/fetch')
-          .expect(200)    
-          .expect(function(res) {
-            Beach.findOne({'mswId': '271'})
-              .exec(function(err, beach) {
-                if (err) console.log(err);
-                expect(beach.beachname).to.equal("Hammonds Reef");
-              });
-          })
-        .end(done);
-      });
-
-      it('getTweetAsync should write surf data to the DB', function(done){
-        
-      });
-
-      it('getMswAsync should write tweet data to the DB', function(done){
-
-      });
-
-
-
-    }); //Database
 
     describe('API Utils - REST calls', function(){
-
-      it ('getTweetAsync should return JSON', function(done){
-        apiUtils.getTweetAsync(33.9015, -118.423)
-          .then(function(success, err){
-            expect(typeof success).to.equal('object');
-            done()
-          })
-      });
 
       it('getMswAsync should return JSON', function(done){
         apiUtils.getMswAsync({mswId: 270})
@@ -125,8 +121,15 @@ describe('', function() {
           })
       });
 
+      it ('getTweetAsync should return JSON', function(done){
+        apiUtils.getTweetAsync(33.9015, -118.423)
+          .then(function(success, err){
+            expect(typeof success).to.equal('object');
+            done()
+          })
+      });
+
+
+
     }); //Api Utils
-
-
-
 });

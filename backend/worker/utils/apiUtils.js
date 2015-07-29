@@ -10,12 +10,6 @@ var Beach = require('../../db/models/beach.js');
 
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
-
-
-
-//////////////////////expeirmental///////
-/////////////////
-
 var iterativeApiCall = function(func, time){
   return function(){
     Beach.find({})
@@ -38,7 +32,7 @@ var iterativeApiCall = function(func, time){
 };
 
 exports.getMswAsync = Promise.promisify(function(beach, cb){
-  
+
   var options = {
     method: 'GET', 
     uri: endpoint + (beach.mswId).toString()
@@ -50,7 +44,6 @@ exports.getMswAsync = Promise.promisify(function(beach, cb){
       var timeFiltered = crudUtils.filterBeachDataTime(response);
       Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
         .then(function(error, success){
-          console.log('Surf Data Written!', beach.mswId)
           cb(success, error)
         })
     })
@@ -92,9 +85,12 @@ var getTweetsAsync = Promise.promisify( function(beach, cb){
     })
 });
 
-var testTweet = iterativeApiCall(getTweetsAsync, 60100)
-var testMsw = iterativeApiCall(exports.getMswAsync, 0);
-//testMsw();
+
+
+exports.getTweetAsync(33.9015, -118.423);
+// var testTweet = iterativeApiCall(getTweetsAsync, 60100)
+// var testMsw = iterativeApiCall(exports.getMswAsync, 0);
+// testMsw();
 
 
 /////////////////cron scheduler//////
