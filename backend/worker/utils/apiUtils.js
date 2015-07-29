@@ -10,36 +10,52 @@ var Beach = require('../../db/models/beach.js');
 
 var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
 
-exports.beachDataReq = function(){
-  Beach.find({})
-    .then(function(data){
-      (function recurse(ind){
-        if (ind === data.length) return;
-        var beach = data[ind];
-        var options = {
-          method: 'GET',
-          uri: endpoint + (beach.mswId).toString()
-        }
-
-        requestPromise(options)
-          .then(function(response){
-            console.log('passed', beach.mswId);
-            var timeFiltered = crudUtils.filterBeachDataTime(response);
-            Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
-              .then(function(success){
-                console.log('Wrote Beach Data');
-                recurse(ind + 1)
-              })
-              .catch(function(error){
-                console.log(error);
-                throw error;
-              })
+var iterativeApiCall = function(func, time){
+  return function(){
+    Beach.find({})
+      .then(function(data){
+        (function recurse(ind){
+          if (ind === data.length){
+            console.log('Data for all beaches finished')
+            return;
+          } 
+          func(data[ind])
+            .then(function(success){
+              setTimeout ( function(){recurse(ind+1)}, time )
             })
-      })(0)
-    })
+            .catch(function(error){
+              console.log(error);
+            })
+        })(0)
+      })
+  }
 };
 
-var getTweets = function(lat, lon, cb){ 
+exports.getMswAsync = Promise.promisify(function(beach, cb){
+
+  var options = {
+    method: 'GET', 
+    uri: endpoint + (beach.mswId).toString()
+  }
+
+  requestPromise(options)
+    .then(function(response){
+      //console.log('passed', beach.mswId);
+      var timeFiltered = crudUtils.filterBeachDataTime(response);
+      Beach.findOneAndUpdate({mswId: beach.mswId, forecastData: timeFiltered})
+        .then(function(error, success){
+          cb(success, error)
+        })
+    })
+});
+
+var getTweetText = function(obj){
+  return _.map(obj.statuses, function(tweet){
+    return tweet.text;
+  })
+};
+
+exports.getTweetAsync = Promise.promisify( function(lat, lon, cb){ 
 
   var client = new Twitter({
    consumer_key: 'o9odfZmdeKbvrgpCVLotcPCNE',
@@ -51,41 +67,31 @@ var getTweets = function(lat, lon, cb){
   var geocode = lat + "," + lon + ",5mi";
 
   client.get('search/tweets', {q: 'surf', geocode: geocode}, function(error, tweets, response){
-    cb(error, tweets);
+    cb(error, tweets, response);
   });
-};
 
+});
 
-exports.tweets = function(){
-
-  var getTweetsAsync = Promise.promisify(getTweets);
-
-  var getTweetText = function(obj){
-    return _.map(obj.statuses, function(tweet){
-      return tweet.text;
+var getTweetsAsync = Promise.promisify( function(beach, cb){
+  exports.getTweetAsync(beach.lat, beach.lon)
+    .then(function(tweets){
+      var tweetText = getTweetText(tweets);
+      Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
+        .then(function(error, success){
+          console.log('Tweet data written!', tweetText);
+          //seems like these two arguments should be swtiched in order
+          cb(success, error)
+        })
     })
-  };
+});
 
-  Beach.find({})
-    .then(function(data){
-      (function recurse(ind){
-        if (ind === data.length) return;
-        var beach = data[ind];
-        getTweetsAsync(beach.lat, beach.lon)
-          .then(function(tweets){
-            var tweetText = getTweetText(tweets);
-            Beach.findOneAndUpdate({mswId: beach.mswId, tweets: tweetText})
-              .then(function(success){
-                console.log('Tweet data written!', tweetText);
-                setTimeout (function(){recurse(ind+1)}, 60010);
-              })
-              .catch(function(err){
-                throw err;
-              })
-          })
-        })(0)
-    })
-};
+
+
+exports.getTweetAsync(33.9015, -118.423);
+// var testTweet = iterativeApiCall(getTweetsAsync, 60100)
+// var testMsw = iterativeApiCall(exports.getMswAsync, 0);
+// testMsw();
+
 
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
@@ -94,5 +100,3 @@ exports.updateBeachData = function(){
     exports.beachDataReq();
   });                                               
 };
-
-

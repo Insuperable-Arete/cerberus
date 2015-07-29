@@ -19,10 +19,10 @@ var writeBeachEntry = function(beachData){
 
 				newBeach.save(function(err){
 					if (err) throw err;
-					console.log('Beach Entry Created!')
+					//console.log('Beach Entry Created!')
 				});
 			}
-			else console.log('Beach Entry Exists!');
+			//else console.log('Beach Entry Exists!');
 		})
 };
 
