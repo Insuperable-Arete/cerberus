@@ -26,23 +26,25 @@ angular.module('app.animationService', [])
         showTitle(currentlyHighlighted);
       }
 
-      function open() {
-        var context = this;
-        var modalInstance = $modal.open({
-          scope: $rootScope,
-          animation: true,
-          templateUrl: 'detailsModal.html',
-          controller: 'DetailsController',
-          size: 'lg',
-          resolve: {
-            forecast: function () {
-              return JSON.parse(angular.element(context).attr('forecast'))[0];
-            },
-            beachName: function() {
-              return JSON.parse(angular.element(context).attr('name'));
-            }
-          }
-        });
+      function open () {
+        console.log('opened')
+        $rootScope.$broadcast('beach clicked');
+      //   var context = this;
+      //   var modalInstance = $modal.open({
+      //     scope: $rootScope,
+      //     animation: true,
+      //     templateUrl: 'detailsModal.html',
+      //     controller: 'DetailsController',
+      //     size: 'lg',
+      //     resolve: {
+      //       forecast: function () {
+      //         return JSON.parse(angular.element(context).attr('forecast'))[0];
+      //       },
+      //       beachName: function() {
+      //         return JSON.parse(angular.element(context).attr('name'));
+      //       }
+      //     }
+      //   });
       };
 
       function getHighlightedBeach() {

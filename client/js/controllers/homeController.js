@@ -20,6 +20,12 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       $scope.detailsTab = false;
     }
   });
+
+  $scope.$on('beach clicked', function() {
+    $location.url('/details');
+    $scope.openSidebar();
+  });
+
   $scope.toggleDetailsTab = function() {
     $scope.detailsTab = !$scope.detailsTab;
   }
