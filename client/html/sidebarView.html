@@ -3,6 +3,7 @@
   <h1>{{ beachInfo.name }}</h1>
   <h3>{{ beachInfo.time }}</h3>
   <button ng-click="getDirections()">show route</button>
+  <button ng-click="hideDirections()">hide route</button>
   <h3>Update forecast time:  
     <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
   </h3>

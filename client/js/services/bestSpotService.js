@@ -102,7 +102,7 @@ angular.module('app.bestSpotService', [])
 
       var renderPathToBeachFromCurrentLocation = function(beach) {
   
-        var destination = new google.maps.LatLng(beach.lat, beach.lon)
+        var destination = new google.maps.LatLng(beach.lat, beach.lon);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
@@ -125,10 +125,17 @@ angular.module('app.bestSpotService', [])
         }
       };
 
+      var hideRoute = function () {
+        if (directionsDisplay) {
+          directionsDisplay.setMap(null);
+        }
+      };
+
       return {
         renderPathToBeach: renderPathToBeach,
         getBestWavesFromCurrentLoc: getBestWavesFromCurrentLoc,
-        renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation
+        renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation,
+        hideRoute: hideRoute
       };
 
 
