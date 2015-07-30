@@ -1,0 +1,6 @@
+#site-menu-content
+  span(class="glyphicon glyphicon-remove" ng-click="closeSidebar()")
+  div(ng-repeat="beach in beaches" ng-click="selectBeach(beach)" ui-sref="details")
+    span.
+      {{beach.beachname}}
+    span

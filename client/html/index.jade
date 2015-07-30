@@ -25,6 +25,7 @@ html(lang="en" ng-app="app")
                 span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
                 input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
               span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
+              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="overview")
         div(ng-controller="GoogleMapController" id="map")
     include dependencies
     include scripts

@@ -6,6 +6,7 @@ var app = angular.module('app', [
   'app.googleMapController',
   'app.typeAheadController',
   'app.infoController',
+  'app.overviewController',
   'app.mapService',
   'app.animationService',
   'app.bestSpotService',
@@ -29,4 +30,9 @@ var app = angular.module('app', [
       templateUrl: './html/sidebarView.html',
       controller: 'DetailsSidebarController'
     })
+    .state('overview', {
+      url: '/overview',
+      templateUrl: './html/overview.html',
+      controller: 'OverviewController'
+    });
 });

@@ -10,7 +10,7 @@ var Server = require('karma').Server;
 
 gulp.task("lint", function(){
   return gulp.src([
-    "./client/**/*.js", 
+    "./client/**/*.js",
     "!./client/lib/**"
     ])
   .pipe(jshint(".jshintrc"))
@@ -21,7 +21,8 @@ gulp.task("jade", function(){
   return gulp.src([
     "./client/html/index.jade",
     "./client/html/infoView.jade",
-    "./client/html/sidebarView.jade"
+    "./client/html/sidebarView.jade",
+    "./client/html/overview.jade"
   ])
   .pipe(jade({
     pretty: true
