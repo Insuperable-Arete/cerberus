@@ -4,7 +4,7 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
 
   $scope.init = function() {
     var beaches = MapService.getBeachCache();
-    $scope.timeIndex = MapService.getCurrentTimeStamp() || 0;
+    $scope.timeIndex = MapService.getCurrentTimeStamp();
     $scope.selectedBeach = MapService.getCurrentBeach();
     $scope.timeStamps = MapService.getLocalTimeStamps(beaches);
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
@@ -77,7 +77,7 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
   });
 
   $scope.$on('beach selected', function() {
-    $scope.updateForecast();
+    $scope.$apply($scope.updateForecast());
   });
 
   $scope.getDirections = function() {

@@ -5,7 +5,7 @@ tab.controller('DetailsTabController', function($scope, MapService) {
 
   var init = function() {
     $scope.theBeach = MapService.getCurrentBeach();
-    $scope.timeIndex = MapService.getCurrentTimeStamp() || 0;
+    $scope.timeIndex = MapService.getCurrentTimeStamp();
     $scope.forecast = $scope.theBeach.forecastData[$scope.timeIndex];
     $scope.solidRating = $scope.forecast.solidRating;
     $scope.fadedRating = $scope.forecast.fadedRating;
