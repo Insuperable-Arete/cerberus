@@ -15,44 +15,7 @@ html(lang="en" ng-app="app")
         .tab-selector(ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''").
           Surf's Up!
         #site-menu(ng-class="sideMenu ? 'show-nav' : ''" ui-view)
-        .side-menu-tab(ng-show="sideMenu && isOnDetails" ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController")
-          .side-menu-tab-content
-              span.glyphicon.glyphicon-remove(ng-click="toggleDetailsTab()")
-            .row
-              .col-md-3
-                .circle.center
-                  include anim/swellHeight.jade
-                .center
-                  strong.
-                    Swell Height
-                  .center.ng-cloak.
-                    {{swellHeight}}
-              .col-md-3    
-                .circle.center
-                  include anim/swellPeriod.jade
-                .center
-                  strong.
-                    Swell Period
-                  .center.ng-cloak.
-                    {{swellPeriod}}
-              .col-md-3    
-                .circle.center
-                  include anim/windSpeed.jade
-                .center
-                  strong.
-                    Wind Speed
-                  .center.ng-cloak.
-                    {{windSpeed}}
-              .col-md-3    
-                .circle.center
-                  include anim/windDirection.jade
-                .center
-                  strong.
-                    Wind Direction
-                  .center.ng-cloak.
-                    {{windDirection}}
-        .side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''").
-          Details
+        include sideTab
         nav.navbar.navbar-inverse
           .container-fluid
             .navbar-header
@@ -62,6 +25,7 @@ html(lang="en" ng-app="app")
                 span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
                 input(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
               span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
+              span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="overview")
         div(ng-controller="GoogleMapController" id="map")
     include dependencies
     include scripts

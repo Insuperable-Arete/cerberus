@@ -20,6 +20,18 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       $scope.detailsTab = false;
     }
   });
+
+  $rootScope.$on('$locationChangeStart', function() {
+    if ($location.url() === "/") {
+      MapService.setCurrentTimeStamp(0);
+    }
+  })
+
+  $scope.$on('beach clicked', function() {
+      $state.go('details');
+      $scope.openSidebar();
+  });
+
   $scope.toggleDetailsTab = function() {
     $scope.detailsTab = !$scope.detailsTab;
   }

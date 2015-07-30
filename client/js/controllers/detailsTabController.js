@@ -5,7 +5,7 @@ tab.controller('DetailsTabController', function($scope, MapService) {
 
   var init = function() {
     $scope.theBeach = MapService.getCurrentBeach();
-    $scope.timeIndex = MapService.getCurrentTimeStamp() || 0;
+    $scope.timeIndex = MapService.getCurrentTimeStamp();
     $scope.forecast = $scope.theBeach.forecastData[$scope.timeIndex];
     $scope.solidRating = $scope.forecast.solidRating;
     $scope.fadedRating = $scope.forecast.fadedRating;
@@ -14,13 +14,20 @@ tab.controller('DetailsTabController', function($scope, MapService) {
     $scope.windSpeed = $scope.forecast.wind.speed;
     $scope.windDirection = $scope.forecast.wind.compassDirection;
     $scope.beachName = $scope.theBeach.beachname;
+
+    console.log('Tab');
+    console.log($scope.timeIndex);
+    console.log($scope.forecast);
+    console.log($scope.beachName);
   };
 
   $scope.$on('beach selected', function() {
     init();
   });
   $scope.$on('time changed', function() {
-    init();
+    if (MapService.getCurrentBeach()) {
+      init();
+    }
   });
 
   $scope.windSpeedClass = function(specifier) {

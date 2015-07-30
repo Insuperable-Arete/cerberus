@@ -112,7 +112,7 @@
             <div class="navbar-header"><a ng-click="resetMap()" class="navbar-brand">Cerferus</a>
               <form ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()" class="navbar-left"><span type="submit" ui-sref="details" class="glyphicon glyphicon-search"></span>
                 <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="  Search for a beach">
-              </form><span ng-click="openSidebar()" ui-sref="default" class="navbar-left glyphicon glyphicon-info-sign"></span>
+              </form><span ng-click="openSidebar()" ui-sref="default" class="navbar-left glyphicon glyphicon-info-sign"></span><span ng-click="openSidebar()" ui-sref="overview" class="navbar-left glyphicon glyphicon-info-sign"></span>
             </div>
           </div>
         </nav>
@@ -134,6 +134,7 @@
     <script src="../js/controllers/detailsSidebarController.js"></script>
     <script src="../js/controllers/typeAheadController.js"></script>
     <script src="../js/controllers/infoController.js"></script>
+    <script src="../js/controllers/overviewController.js"></script>
     <script src="../js/controllers/detailsTabController.js"></script>
     <script src="../js/services/animationService.js"></script>
     <script src="../js/services/mapService.js"></script>
