@@ -1,26 +1,44 @@
 var sideBar = angular.module('app.detailsSidebarController', []);
 
-sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $scope, MapService, AnimationService, BestSpotService) {
+sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $scope, MapService, AnimationService, BestSpotService, $location) {
 
   $scope.init = function() {
     var beaches = MapService.getBeachCache();
-    $scope.timeIndex = 0;
+    $scope.timeIndex = MapService.getCurrentTimeStamp() || 0;
     $scope.selectedBeach = MapService.getCurrentBeach();
     $scope.timeStamps = MapService.getLocalTimeStamps(beaches);
     $scope.forecastTime = $scope.timeStamps[$scope.timeIndex];
     $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
     $scope.fadedRating = $scope.currentForecast.fadedRating;
     $scope.solidRating = $scope.currentForecast.solidRating;
+    $scope.beachname = $scope.selectedBeach.beachname;
     $scope.detailsTab = false;
+
+    console.log('Side Menu');
+    console.log($scope.timeIndex);
+    console.log($scope.currentForecast);
+    console.log($scope.beachname);
   };
 
   // $scope.init()
 
+  // $rootScope.$on('$locationChangeStart', function() {
+  //   if ($location.url() === "/") {
+  //     MapService.setCurrentTimeStamp(0);
+  //   }
+  // })
+
   $scope.updateForecast = function() {
+    $scope.selectedBeach = MapService.getCurrentBeach();
     $scope.currentForecast = $scope.selectedBeach.forecastData[$scope.timeIndex];
+    $scope.beachname = $scope.selectedBeach.beachname;
     $scope.fadedRating = $scope.currentForecast.fadedRating;
     $scope.solidRating = $scope.currentForecast.solidRating;
+
+    console.log('Side Menu');
+    console.log($scope.timeIndex);
     console.log($scope.currentForecast);
+    console.log($scope.beachname);
   }
 
   $scope.toRepeat = function(num) {
@@ -59,7 +77,6 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
   });
 
   $scope.$on('beach selected', function() {
-    $scope.selectedBeach = MapService.getCurrentBeach();
     $scope.updateForecast();
   });
 

@@ -21,9 +21,15 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
     }
   });
 
+  $rootScope.$on('$locationChangeStart', function() {
+    if ($location.url() === "/") {
+      MapService.setCurrentTimeStamp(0);
+    }
+  })
+
   $scope.$on('beach clicked', function() {
-    $location.url('/details');
-    $scope.openSidebar();
+      $state.go('details');
+      $scope.openSidebar();
   });
 
   $scope.toggleDetailsTab = function() {

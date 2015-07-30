@@ -1,6 +1,6 @@
 #site-menu-content
   span(class="glyphicon glyphicon-remove" ng-click="closeSidebar()")
-  h1 {{ selectedBeach.beachname }}
+  h1 {{ beachname }}
   h3 {{ forecastTime }}
   button(ng-click="getDirections()").
    show route
@@ -19,4 +19,3 @@
       Faded Rating
     .center.
       {{ fadedRating }}
-

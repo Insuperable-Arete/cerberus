@@ -27,7 +27,10 @@ angular.module('app.animationService', [])
       }
 
       function open () {
-        console.log('opened')
+        var beachName = JSON.parse(angular.element(this).attr('name'));
+        MapService.setCurrentBeach(beachName);
+        MapService.zoomToBeach(beachName);
+        highlightMarker();
         $rootScope.$broadcast('beach clicked');
       //   var context = this;
       //   var modalInstance = $modal.open({
