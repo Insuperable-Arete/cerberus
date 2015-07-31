@@ -1,7 +1,7 @@
 #site- {
   &wrapper {
     // Change background color on #site-menu also
-    background-color: $primary-color-light;
+    background-color: teal;
     position: relative;
     overflow: hidden;
     width: 100%;
@@ -21,9 +21,15 @@
   &menu {
     // Change background color on #site-wrapper also
     &-content {
-      padding: 15px;
+      padding: 18px;
+      h4 {
+        display: inline-block;
+      }
+      label {
+        margin-left: 10px;
+      }
     }
-    background-color: $primary-color-light;
+    background-color: teal;
     width: 300px;
     height: 100%;
     position: absolute;
@@ -36,8 +42,10 @@
       display: block;
     }
   }
+
+
   &tab {
-    background-color: $primary-color-light;
+    background-color: aqua;
     width: 300px;
     height: 300px;
     position: absolute;
@@ -55,7 +63,7 @@
 .tab- {
   &selector {
     position: absolute;
-    background-color: $primary-color-light;
+    background-color: aqua;
     bottom: 0;
     left: 200px;
     width: 90px;
@@ -64,8 +72,6 @@
     z-index: 5;
     transform: translateY(0);
     transition: .3s ease all;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     &:hover {
       background-color: black;
       color: white;
@@ -75,7 +81,7 @@
     }
   }
   &content {
-    background-color: $primary-color-light;
+    background-color: aqua;
     padding: 15px;
     position: absolute;
   }
@@ -84,7 +90,7 @@
 .side-menu- {
   &tab {
     position: absolute;
-    background-color: $primary-color;
+    background-color: cyan;
     width: 800px;
     left: -800px;
     bottom: 35px;
@@ -99,7 +105,7 @@
       bottom: 35px;
       left: 0;
       z-index: 4;
-      background-color: $primary-color;
+      background-color: cyan;
       height: 30px;
       width: 50px;
       transform: translateY(0);
@@ -133,13 +139,70 @@ h1 .glyphicon-remove {
     // animation-delay: 1s;
     // animation-fill-mode:forwards;
     &.solid-star {
+      // color: dodgerblue;
       color: $accent-color-dark;
+      &.tiny {
+        font-size: 10px;
+      }
     }
     &.faded-star {
       color: $accent-color-light;
+      &.tiny {
+        font-size: 10px;
+      }
     }
     &-empty {
       @extend .glyphicon.glyphicon-star;
+      &.tiny {
+        font-size: 10px;
+      }
     }
   }
+}
+
+.overview {
+
+
+  &Column1 {
+    background-color: $primary-color-dark;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: inline-block;
+    color: white;
+    font-size: 13;
+    float: left;
+    line-height: 48px;
+    height: 48px;
+    padding-left: 7px;
+    width: 72%;
+    word-wrap:break-word;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+  &Column2 {
+    background-color:$primary-color;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: inline-block;
+    float: right;
+    line-height: 48px;
+    text-align: center;
+    height: 48px;
+    width: 25%;
+  }
+}
+
+.overviewEntryDiv{
+  background-color: $primary-color;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+  &:hover{
+    box-shadow: 2px 2px black;
+  }
+  margin-top: 5px;
+}
+#overviewSelect {
+  margin: 5px;
 }
