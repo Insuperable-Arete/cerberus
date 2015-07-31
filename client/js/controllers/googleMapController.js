@@ -14,12 +14,11 @@ angular.module('app.googleMapController', [])
           MapService.setBeachCache( beaches );
         });
     };
+    $scope.init();
 
     $rootScope.$on('beachCacheSet', function () {
       AnimationService.renderWind(0);
       AnimationService.renderBeaches(0);
     });
-
-    $scope.init();
 
   });

@@ -1,12 +1,15 @@
 #site-menu-content
   span(class="glyphicon glyphicon-remove" ng-click="closeSidebar()")
   h1 {{ beachInfo.name }}
-  h3 {{ beachInfo.time }}
-  button(ng-click="getDirections()").
-   show route
-  h3 Update forecast time:  
-    rzslider(rz-slider-model="timeIndex" class="time-slider" rz-slider-ceil="7")
   .center
     span.glyphicon.glyphicon-star.solid-star(ng-repeat="star in toRepeat(beachInfo.forecast.solidRating)")
     span.glyphicon.glyphicon-star.faded-star(ng-repeat="star in toRepeat(beachInfo.forecast.fadedRating)")
     span.glyphicon.glyphicon-star-empty(ng-repeat="star in toRepeat(remainingStars())")
+  h3 {{ beachInfo.time }}
+  h3 Update forecast time:  
+    rzslider(rz-slider-model="timeIndex" class="time-slider" rz-slider-ceil="7")
+  button(ng-click="getDirections()" class="btn btn-default" ng-if="!conditions.routeExists").
+   Show Route 
+  button(ng-click="hideDirections()" class="btn btn-default" ng-if="conditions.routeExists").
+    Hide Route
+  img(src="../assets/spinner.gif" ng-show="conditions.processing")

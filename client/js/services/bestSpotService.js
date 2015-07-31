@@ -1,13 +1,16 @@
 angular.module('app.bestSpotService', [])
-  .service('BestSpotService', ['$rootScope', 'MapService',
+  .factory('BestSpotService', ['$rootScope', 'MapService',
     function($rootScope, MapService) {
 
       var directionsDisplay;
       var map;
       var directionsService = new google.maps.DirectionsService();
+      var conditions = {
+        processing: false,
+        routeExists: false
+      };
 
       var getBestWavesFromCurrentLoc = function(distance, timeIndex) {
-
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             var pos = [position.coords.latitude, position.coords.longitude];
@@ -75,10 +78,12 @@ angular.module('app.bestSpotService', [])
       var renderPathToBeach = function (origin, destination) {
 
         map = MapService.getMap();
+
+        if (directionsDisplay) {
+          directionsDisplay.setMap(null);
+        }
+
         directionsDisplay = new google.maps.DirectionsRenderer();
-        directionsDisplay.setMap(map);
-        console.log('renderPathToBeach invoked...');
-        console.log('with map:', map);
 
         var options = {
           origin: origin,
@@ -94,12 +99,18 @@ angular.module('app.bestSpotService', [])
           }
         });
 
+        directionsDisplay.setMap(map);
+        $scope.$apply(function () {
+          toggleSpinner();
+          toggleRoute();
+        })
       };
 
 
       var renderPathToBeachFromCurrentLocation = function(beach) {
+        toggleSpinner();
   
-        var destination = new google.maps.LatLng(beach.lat, beach.lon)
+        var destination = new google.maps.LatLng(beach.lat, beach.lon);
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
@@ -122,10 +133,27 @@ angular.module('app.bestSpotService', [])
         }
       };
 
+      var hideRoute = function () {
+        if (directionsDisplay) {
+          directionsDisplay.setMap(null);
+        }
+        toggleRoute();
+      };
+
+      var toggleRoute = function () {
+        conditions.routeExists = !conditions.routeExists;
+      }
+
+      var toggleSpinner = function () {
+        conditions.processing = !conditions.processing;
+      };
+
       return {
         renderPathToBeach: renderPathToBeach,
         getBestWavesFromCurrentLoc: getBestWavesFromCurrentLoc,
-        renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation
+        renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation,
+        hideRoute: hideRoute,
+        conditions: conditions
       };
 
 

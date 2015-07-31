@@ -1,10 +1,11 @@
 
 <div id="site-menu-content"><span ng-click="closeSidebar()" class="glyphicon glyphicon-remove"></span>
   <h1>{{ beachInfo.name }}</h1>
+  <div class="center"><span ng-repeat="star in toRepeat(beachInfo.forecast.solidRating)" class="glyphicon glyphicon-star solid-star"></span><span ng-repeat="star in toRepeat(beachInfo.forecast.fadedRating)" class="glyphicon glyphicon-star faded-star"></span><span ng-repeat="star in toRepeat(remainingStars())" class="glyphicon glyphicon-star-empty"></span></div>
   <h3>{{ beachInfo.time }}</h3>
-  <button ng-click="getDirections()">show route</button>
   <h3>Update forecast time:  
     <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
   </h3>
-  <div class="center"><span ng-repeat="star in toRepeat(beachInfo.forecast.solidRating)" class="glyphicon glyphicon-star solid-star"></span><span ng-repeat="star in toRepeat(beachInfo.forecast.fadedRating)" class="glyphicon glyphicon-star faded-star"></span><span ng-repeat="star in toRepeat(remainingStars())" class="glyphicon glyphicon-star-empty"></span></div>
+  <button ng-click="getDirections()" ng-if="!conditions.routeExists" class="btn btn-default">Show Route </button>
+  <button ng-click="hideDirections()" ng-if="conditions.routeExists" class="btn btn-default">Hide Route</button><img src="../assets/spinner.gif" ng-show="conditions.processing"/>
 </div>
