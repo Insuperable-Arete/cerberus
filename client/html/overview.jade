@@ -1,6 +1,34 @@
 #site-menu-content
+  h4 Browse Current Conditions 
   span(class="glyphicon glyphicon-remove" ng-click="closeSidebar()")
-  div(ng-repeat="beach in beaches" ng-click="selectBeach(beach)" ui-sref="details")
-    span.
+  br
+  label order by:
+  //- select(ng-model="mySelect" ng-options="opt as opt for opt in options")
+  select(id="overviewSelect" ng-model="mySelect" ng-options="obj.value for obj in options")
+  .overviewEntryDiv(ng-repeat="beach in beaches | orderBy: mySelect.option : true" ng-click="selectBeach(beach)"  ui-sref="details")
+    div(class="overviewColumn1").
       {{beach.beachname}}
-    span
+    div  
+    div(ng-if="mySelect.value === 'star rating' || mySelect.value === 'beach name' " class="overviewColumn2")
+      span.glyphicon.glyphicon-star.solid-star.tiny(ng-repeat="star in toRepeat(beach.forecastData[0].solidRating)") 
+      span.glyphicon.glyphicon-star.faded-star.tiny(ng-repeat="star in toRepeat(beach.forecastData[0].fadedRating)")
+      span.glyphicon.glyphicon-star-empty.tiny(ng-repeat="star in toRepeat(5 - beach.forecastData[0].fadedRating - beach.forecastData[0].solidRating)")  
+
+    div(ng-if="mySelect.value === 'longitude'" class="overviewColumn2").
+      {{beach.lon}}
+    div  
+    div(ng-if="mySelect.value === 'latitude'" class="overviewColumn2").
+      {{beach.lat}}
+    div  
+    div(ng-if="mySelect.value === 'temperature'" class="overviewColumn2").
+      {{beach.forecastData[0].condition.temperature}}&deg
+    div  
+    div(ng-if="mySelect.value === 'wind chill'" class="overviewColumn2").
+      {{beach.forecastData[0].wind.chill}}&deg
+    div  
+    div(ng-if="mySelect.value === 'swell height'" class="overviewColumn2").
+      {{beach.forecastData[0].swell.components.primary.height}} ft.
+    div  
+    div(ng-if="mySelect.value === 'swell period'" class="overviewColumn2").
+      {{beach.forecastData[0].swell.components.primary.period}} ft.
+    div 

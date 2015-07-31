@@ -1,4 +1,23 @@
 
-<div id="site-menu-content"><span ng-click="closeSidebar()" class="glyphicon glyphicon-remove"></span>
-  <div ng-repeat="beach in beaches" ng-click="selectBeach(beach)" ui-sref="details"><span>{{beach.beachname}}</span><span></span></div>
+<div id="site-menu-content">
+  <h4>Browse Current Conditions </h4><span ng-click="closeSidebar()" class="glyphicon glyphicon-remove"></span><br/>
+  <label>order by:</label>
+  <select id="overviewSelect" ng-model="mySelect" ng-options="obj.value for obj in options"></select>
+  <div ng-repeat="beach in beaches | orderBy: mySelect.option : true" ng-click="selectBeach(beach)" ui-sref="details" class="overviewEntryDiv">
+    <div class="overviewColumn1">{{beach.beachname}}</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'star rating' || mySelect.value === 'beach name' " class="overviewColumn2"><span ng-repeat="star in toRepeat(beach.forecastData[0].solidRating)" class="glyphicon glyphicon-star solid-star tiny"> </span><span ng-repeat="star in toRepeat(beach.forecastData[0].fadedRating)" class="glyphicon glyphicon-star faded-star tiny"></span><span ng-repeat="star in toRepeat(5 - beach.forecastData[0].fadedRating - beach.forecastData[0].solidRating)" class="glyphicon glyphicon-star-empty tiny"> </span></div>
+    <div ng-if="mySelect.value === 'longitude'" class="overviewColumn2">{{beach.lon}}</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'latitude'" class="overviewColumn2">{{beach.lat}}</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'temperature'" class="overviewColumn2">{{beach.forecastData[0].condition.temperature}}&deg</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'wind chill'" class="overviewColumn2">{{beach.forecastData[0].wind.chill}}&deg</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'swell height'" class="overviewColumn2">{{beach.forecastData[0].swell.components.primary.height}} ft.</div>
+    <div> </div>
+    <div ng-if="mySelect.value === 'swell period'" class="overviewColumn2">{{beach.forecastData[0].swell.components.primary.period}} ft.</div>
+    <div> </div>
+  </div>
 </div>
