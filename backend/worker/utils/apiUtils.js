@@ -10,6 +10,7 @@ var spotData = require('./json/beachData.json');
 var crudUtils = require('./crudUtils');
 var Beach = require('../../db/models/beach.js');
 
+//promisified utility which requests surf data from the Magic Seaweed API
 var getMswAsync = Promise.promisify (function(beach, cb){
     var endpoint = 'http://magicseaweed.com/api/436cadbb6caccea6e366ed1bf3640257/forecast/?spot_id='
     var options = {
