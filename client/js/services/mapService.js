@@ -6,10 +6,13 @@ angular.module('app.mapService', [])
     var currentBeach;
     var currentTimeIndex;
     var currentTimeStamps;
+    // beachInfo exposes only the properties needed by external controllers
     var beachInfo = {
       forecast: null,
       name: null,
-      time: null
+      time: null,
+      lat: null,
+      lon: null
     };
 
     var updateBeachInfo = function() {
@@ -20,9 +23,12 @@ angular.module('app.mapService', [])
       if (!currentTimeIndex) {
         currentTimeIndex = 0;
       }
+      // Update beachInfo object to re-render the views
       beachInfo.forecast = currentBeach.forecastData[currentTimeIndex];
       beachInfo.name = currentBeach.beachname;
       beachInfo.time = currentTimeStamps[currentTimeIndex];
+      beachInfo.lat = currentBeach.lat;
+      beachInfo.lon = currentBeach.lon;
     };
 
     var getBeachData = function() {

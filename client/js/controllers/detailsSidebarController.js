@@ -34,7 +34,8 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
   };
 
   $scope.getDirections = function() {
-    BestSpotService.renderPathToBeachFromCurrentLocation($scope.selectedBeach);
+    // debugger;
+    BestSpotService.renderPathToBeachFromCurrentLocation($scope.beachInfo);
   };
 
   $scope.hideDirections = function () {

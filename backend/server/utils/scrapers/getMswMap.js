@@ -53,11 +53,3 @@ var fs = Promise.promisifyAll(require('fs'));
     console.log('!!!SCRAPE COMPLETE!!! globalSurfData.json created in', writePath);
   });
 }).call(null, 1, 109);
-
-
-// // petty read check
-// fs.readFileAsync(__dirname + '/../json/globalSurfData.json', {encoding: 'utf-8'})
-//   .then(function(beachJSON){
-//     var beaches = JSON.parse(beachJSON);
-//     console.log('num beaches found in data set=', beaches.length);
-//   })
