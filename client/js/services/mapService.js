@@ -1,5 +1,5 @@
 angular.module('app.mapService', [])
-  .factory('MapService', function($http, $rootScope) {
+  .factory('MapService', function($http, $rootScope, $state) {
 
     var map;
     var beachCache;
@@ -17,6 +17,7 @@ angular.module('app.mapService', [])
 
     var updateBeachInfo = function() {
       if (!currentBeach) {
+        $state.go('default');
         throw new Error('Error: updateBeachInfo failed, no beach selected');
         return;
       }

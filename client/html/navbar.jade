@@ -1,15 +1,6 @@
-//-       ul.nav.navbar-nav
-//-         span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
-//-         span.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="overview")
-      //- form.navbar-left.navbar-form(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
-      //-   .form-group
-      //-     input.form-control(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="  Search for a beach")
-      //-   span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
 
-//- nav.navbar.navbar-default
 nav.navbar.navbar-inverse
   .container-fluid
-    // Brand and toggle get grouped for better mobile display
     .navbar-header
       button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1', aria-expanded='false')
         span.sr-only Toggle navigation
@@ -18,10 +9,8 @@ nav.navbar.navbar-inverse
         span.icon-bar
       a.navbar-brand(ng-click="resetMap()").
         Cerferus
-    // Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        //- li.active
         li
           span.navbar-text.navbar-left(class="glyphicon glyphicon-info-sign" ng-click="openSidebar()" ui-sref="default")
         li
@@ -31,8 +20,3 @@ nav.navbar.navbar-inverse
         .form-group
           input.form-control(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
         span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
-      //- 
-      //- form.navbar-form.navbar-left(role='search')
-      //-   .form-group
-      //-     input.form-control(type='text', placeholder='Search')
-      //-   button.btn.btn-default(type='submit') Submit
