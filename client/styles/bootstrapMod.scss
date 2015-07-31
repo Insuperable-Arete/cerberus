@@ -14,7 +14,7 @@
   background-color: $primary-color-dark;
 }
 .navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
-  color: white !important;
+  color: white;
   z-index: 2;
 }
 // .search-board {
@@ -40,6 +40,10 @@
 span.glyphicon.glyphicon-info-sign {
   margin: 15px;
   color: white;
+  font-size: 20px;
+  &:hover {
+    color: $accent-color-light;
+  }
 }
 
 input {
@@ -48,8 +52,8 @@ input {
 }
 
 span.glyphicon.glyphicon-search {
-  color: white;
   margin: 0 15px;
+  color: white;
 }
 
 .navbar-inverse .navbar-nav > li > a {

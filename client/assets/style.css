@@ -384,7 +384,7 @@ th {
   background-color: #00838F; }
 
 .navbar-inverse .navbar-text, .navbar-inverse .navbar-brand {
-  color: white !important;
+  color: white;
   z-index: 2; }
 
 .search-board {
@@ -395,15 +395,18 @@ th {
 
 span.glyphicon.glyphicon-info-sign {
   margin: 15px;
-  color: white; }
+  color: white;
+  font-size: 20px; }
+  span.glyphicon.glyphicon-info-sign:hover {
+    color: #FF80AB; }
 
 input {
   line-height: normal;
   border-radius: 10px; }
 
 span.glyphicon.glyphicon-search {
-  color: white;
-  margin: 0 15px; }
+  margin: 0 15px;
+  color: white; }
 
 .navbar-inverse .navbar-nav > li > a {
   color: white; }

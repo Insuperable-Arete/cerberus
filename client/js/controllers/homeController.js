@@ -52,6 +52,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
 
   $scope.closeSidebar = function() {
     $scope.sideMenu = false;
+    $scope.detailsTab = false;
   };
 
   $scope.toggleTab = function() {
