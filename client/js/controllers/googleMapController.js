@@ -21,5 +21,4 @@ angular.module('app.googleMapController', [])
       AnimationService.renderBeaches(0);
     });
 
-
   });

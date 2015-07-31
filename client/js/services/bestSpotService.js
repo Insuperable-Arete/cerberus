@@ -1,13 +1,16 @@
 angular.module('app.bestSpotService', [])
-  .service('BestSpotService', ['$rootScope', 'MapService',
+  .factory('BestSpotService', ['$rootScope', 'MapService',
     function($rootScope, MapService) {
 
       var directionsDisplay;
       var map;
       var directionsService = new google.maps.DirectionsService();
+      var conditions = {
+        processing: false,
+        routeExists: false
+      };
 
       var getBestWavesFromCurrentLoc = function(distance, timeIndex) {
-
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
             var pos = [position.coords.latitude, position.coords.longitude];
@@ -97,10 +100,15 @@ angular.module('app.bestSpotService', [])
         });
 
         directionsDisplay.setMap(map);
+        $scope.$apply(function () {
+          toggleSpinner();
+          toggleRoute();
+        })
       };
 
 
       var renderPathToBeachFromCurrentLocation = function(beach) {
+        toggleSpinner();
   
         var destination = new google.maps.LatLng(beach.lat, beach.lon);
 
@@ -129,13 +137,23 @@ angular.module('app.bestSpotService', [])
         if (directionsDisplay) {
           directionsDisplay.setMap(null);
         }
+        toggleRoute();
+      };
+
+      var toggleRoute = function () {
+        conditions.routeExists = !conditions.routeExists;
+      }
+
+      var toggleSpinner = function () {
+        conditions.processing = !conditions.processing;
       };
 
       return {
         renderPathToBeach: renderPathToBeach,
         getBestWavesFromCurrentLoc: getBestWavesFromCurrentLoc,
         renderPathToBeachFromCurrentLocation: renderPathToBeachFromCurrentLocation,
-        hideRoute: hideRoute
+        hideRoute: hideRoute,
+        conditions: conditions
       };
 
 

@@ -110,7 +110,7 @@ angular.module('app.mapService', [])
     var setCurrentTimeStamp = function(i) {
       currentTimeIndex = i;
       updateBeachInfo();
-    }
+    };
 
     return {
       getBeachData: getBeachData,

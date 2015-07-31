@@ -8,8 +8,8 @@
   h3 {{ beachInfo.time }}
   h3 Update forecast time:  
     rzslider(rz-slider-model="timeIndex" class="time-slider" rz-slider-ceil="7")
-  button(ng-click="getDirections()" class="btn btn-default").
-   show route 
-  button(ng-click="hideDirections()" class="btn btn-default").
-    hide route
-  
+  button(ng-click="getDirections()" class="btn btn-default" ng-if="!conditions.routeExists").
+   Show Route 
+  button(ng-click="hideDirections()" class="btn btn-default" ng-if="conditions.routeExists").
+    Hide Route
+  img(src="../assets/spinner.gif" ng-show="conditions.processing")

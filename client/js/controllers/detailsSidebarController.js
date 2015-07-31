@@ -1,10 +1,12 @@
 var sideBar = angular.module('app.detailsSidebarController', []);
 
-sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $scope, MapService, AnimationService, BestSpotService, $location) {
+sideBar.controller('DetailsSidebarController', function($timeout, $interval, $rootScope, $scope, MapService, AnimationService, BestSpotService, $location) {
+
   $scope.init = function() {
     $scope.timeIndex = 0;
     MapService.setCurrentTimeStamp($scope.timeIndex);
     $scope.beachInfo = MapService.beachInfo;
+    $scope.conditions = BestSpotService.conditions;
   };
   $scope.init();
 
@@ -23,23 +25,22 @@ sideBar.controller('DetailsSidebarController', function($timeout, $rootScope, $s
       results.push(i);
     }
     return results;
-  }
+  };
 
   $scope.remainingStars = function() {
     return 5 - $scope.beachInfo.forecast.fadedRating - $scope.beachInfo.forecast.solidRating;
-  }
+  };
 
   $scope.toggleTab = function() {
     $scope.detailsTab = !$scope.detailsTab;
   };
 
   $scope.getDirections = function() {
-    // debugger;
     BestSpotService.renderPathToBeachFromCurrentLocation($scope.beachInfo);
   };
 
   $scope.hideDirections = function () {
     BestSpotService.hideRoute();
-  }
+  };
 
 });

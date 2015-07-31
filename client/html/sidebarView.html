@@ -6,6 +6,6 @@
   <h3>Update forecast time:  
     <rzslider rz-slider-model="timeIndex" rz-slider-ceil="7" class="time-slider"></rzslider>
   </h3>
-  <button ng-click="getDirections()" class="btn btn-default">show route </button>
-  <button ng-click="hideDirections()" class="btn btn-default">hide route</button>
+  <button ng-click="getDirections()" ng-if="!conditions.routeExists" class="btn btn-default">Show Route </button>
+  <button ng-click="hideDirections()" ng-if="conditions.routeExists" class="btn btn-default">Hide Route</button><img src="../assets/spinner.gif" ng-show="conditions.processing"/>
 </div>
