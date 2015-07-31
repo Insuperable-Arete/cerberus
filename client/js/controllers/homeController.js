@@ -25,7 +25,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   $scope.$on('beach clicked', function() {
       $state.go('details');
       if ($scope.sideMenu === true) {
-        $scope.$apply(function() {$scope.detailsTab = true;})
+        $timeout(function() { $scope.detailsTab = true; }, 1000)
       }
       // or if not on details
       if ($scope.sideMenu === false) {

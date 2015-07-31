@@ -13,8 +13,6 @@ $accent-color-light: #FF80AB;
 @import "sideMenu";
 @import "animations";
 
-
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -137,4 +135,12 @@ a {
 
 .resources {
   padding: 0;
+}
+
+rzslider span.rz-pointer {
+  background-color: $accent-color;
+}
+
+rzslider span.rz-pointer.rz-active:after {
+  background-color: $accent-color-dark;
 }
