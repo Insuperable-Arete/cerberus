@@ -9,8 +9,8 @@ overview.controller('OverviewController', function($scope, MapService, Animation
     {option: "lon", value: "longitude"},
     {option: "forecastData[0].condition.temperature", value: "temperature"},
     {option: "forecastData[0].wind.chill", value: "wind chill"},
-    {option: "forecastData[0].swell.components.primary.height", value: "swell height"},
-    {option: "forecastData[0].swell.components.primary.period", value: "swell period"}
+    {option: "forecastData[0].swell.components.combined.height", value: "swell height"},
+    {option: "forecastData[0].swell.components.combined.period", value: "swell period"}
   ];
   $scope.selectBeach = function(beach) {
     MapService.setCurrentBeach(beach.beachname);

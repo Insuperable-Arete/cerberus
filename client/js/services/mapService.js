@@ -16,7 +16,6 @@ angular.module('app.mapService', [])
     };
 
     var updateBeachInfo = function() {
-      console.log('updating beach info')
       if (!currentBeach) {
         $state.go('default');
         throw new Error('Error: updateBeachInfo failed, no beach selected');
@@ -36,8 +35,9 @@ angular.module('app.mapService', [])
     var getBeachData = function() {
       return $http({
         method: 'GET',
-        url: '/fetch'
+        url: 'http://localhost:1337/fetch'
       }).then(function (resp) {
+        console.log(resp.data);
         return resp.data;
       });
     };
