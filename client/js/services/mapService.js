@@ -16,6 +16,7 @@ angular.module('app.mapService', [])
     };
 
     var updateBeachInfo = function() {
+      console.log('updating beach info')
       if (!currentBeach) {
         $state.go('default');
         throw new Error('Error: updateBeachInfo failed, no beach selected');

@@ -19,4 +19,4 @@ nav.navbar.navbar-inverse
       form.navbar-left.navbar-form(ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()")
         .form-group
           input.form-control(type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder ="Search for a beach")
-        span(type="submit" ui-sref="details" class="glyphicon glyphicon-search")
+        span(type="submit" class="glyphicon glyphicon-search" ng-click="onSubmit(searchBeach)")

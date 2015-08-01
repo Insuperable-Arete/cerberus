@@ -122,7 +122,7 @@
       z-index: 4;
       background-color: cyan;
       height: 30px;
-      width: 50px;
+      width: 60px;
       @include translate-x(0);
       transition: .3s ease all;
       border-top-right-radius: 5px;
@@ -134,6 +134,10 @@
       &:hover {
         background-color: black;
         color: white;
+      }
+      &-content {
+        position: absolute;
+        margin: 5px;
       }
     }
     &-content {

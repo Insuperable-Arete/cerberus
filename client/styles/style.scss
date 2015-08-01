@@ -144,3 +144,7 @@ rzslider span.rz-pointer {
 rzslider span.rz-pointer.rz-active:after {
   background-color: $accent-color-dark;
 }
+
+#map .gm-style {
+  height: 95% !important;
+}

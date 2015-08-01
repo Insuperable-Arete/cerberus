@@ -34,5 +34,6 @@
             Wind Direction
           .center.ng-cloak.
             {{beachInfo.forecast.wind.compassDirection}}
-.side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''").
-  Details
+.side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''")
+  strong.side-menu-tab-selector-content.
+    Details

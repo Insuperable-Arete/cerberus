@@ -45,7 +45,7 @@
         <div ng-click="toggleTab()" ng-class="bottomTab ? 'show-tab' : ''" class="tab-selector">Surf's Up!</div>
         <div id="site-menu" ng-class="sideMenu ? 'show-nav' : ''" ui-view></div>
         <div ng-show="sideMenu &amp;&amp; isOnDetails" ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController" class="side-menu-tab">
-          <div class="side-menu-tab-content clearfix"><span ng-click="toggleDetailsTab()" class="glyphicon glyphicon-remove"></span>
+          <div class="side-menu-tab-content"><span ng-click="toggleDetailsTab()" class="glyphicon glyphicon-remove"></span>
             <div class="row">
               <div class="col-md-3">
                 <div class="circle center">
@@ -107,7 +107,7 @@
             </div>
           </div>
         </div>
-        <div ng-show="sideMenu &amp;&amp; isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''" class="side-menu-tab-selector">Details</div>
+        <div ng-show="sideMenu &amp;&amp; isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''" class="side-menu-tab-selector"><strong class="side-menu-tab-selector-content">Details</strong></div>
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -121,7 +121,7 @@
               <form ng-controller="TypeAheadController" ui-sref="details" ng-submit="onSubmit()" class="navbar-left navbar-form">
                 <div class="form-group">
                   <input type="text" ng-model="searchBeach" typeahead="beach for beach in beachChoices | filter:$viewValue" placeholder="Search for a beach" class="form-control">
-                </div><span type="submit" ui-sref="details" class="glyphicon glyphicon-search"></span>
+                </div><span type="submit" ng-click="onSubmit(searchBeach)" class="glyphicon glyphicon-search"></span>
               </form>
             </div>
           </div>

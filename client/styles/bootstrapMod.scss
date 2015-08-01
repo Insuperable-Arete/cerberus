@@ -52,8 +52,15 @@ input {
 }
 
 span.glyphicon.glyphicon-search {
+  font-size: 20px;
   margin: 0 15px;
   color: white;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
+  &:hover {
+    color: $accent-color-light;
+  }
 }
 
 .navbar-inverse .navbar-nav > li > a {

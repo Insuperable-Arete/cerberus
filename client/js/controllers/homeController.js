@@ -17,6 +17,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       $scope.openSidebar();
       $timeout(function() { $scope.detailsTab = true; }, 1000)
     } else {
+      MapService.currentBeach = null;
       $scope.isOnDetails = false;
       $scope.detailsTab = false;
     }

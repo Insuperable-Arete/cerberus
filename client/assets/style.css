@@ -405,8 +405,14 @@ input {
   border-radius: 10px; }
 
 span.glyphicon.glyphicon-search {
+  font-size: 20px;
   margin: 0 15px;
-  color: white; }
+  color: white;
+  position: relative;
+  top: 5px;
+  cursor: pointer; }
+  span.glyphicon.glyphicon-search:hover {
+    color: #FF80AB; }
 
 .navbar-inverse .navbar-nav > li > a {
   color: white; }
@@ -613,7 +619,7 @@ html, body {
     z-index: 4;
     background-color: cyan;
     height: 30px;
-    width: 50px;
+    width: 60px;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -630,6 +636,9 @@ html, body {
     .side-menu-tab-selector:hover {
       background-color: black;
       color: white; }
+    .side-menu-tab-selector-content {
+      position: absolute;
+      margin: 5px; }
   .side-menu-tab-content {
     position: relative;
     padding: 15px; }
@@ -694,7 +703,7 @@ h1 .glyphicon-remove {
 
 .circle, .cloud-1, .cloud-2, .cloud-3 {
   opacity: 0;
-  background: linear-gradient(to bottom, #00bcd4 0%, #ff4081 100%);
+  background-color: #C7CCF7;
   border-radius: 100px;
   height: 175px;
   width: 175px;
@@ -823,6 +832,9 @@ h1 .glyphicon-remove {
   width: 10px;
   background-color: black;
   top: 63px; }
+
+g path {
+  stroke: #5B5BB7; }
 
 @keyframes fadeIn {
   0% {
@@ -979,3 +991,6 @@ rzslider span.rz-pointer {
 
 rzslider span.rz-pointer.rz-active:after {
   background-color: #C51162; }
+
+#map .gm-style {
+  height: 95% !important; }
