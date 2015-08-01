@@ -4,7 +4,7 @@ overview.controller('OverviewController', function($scope, MapService, Animation
   $scope.beaches = MapService.getBeachCache();
   $scope.options = [
     {option: "beachname", value: "beach name"},
-    {option: "forecastData[0].solidRating", value: "star rating"},
+    {option: "forecastData[0].solidRating + forecastData[0].fadedRating", value: "star rating"},
     {option: "lat", value: "latitude"},
     {option: "lon", value: "longitude"},
     {option: "forecastData[0].condition.temperature", value: "temperature"},
