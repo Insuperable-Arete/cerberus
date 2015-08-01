@@ -14,7 +14,7 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
 
   $scope.onSubmit = function (search) {
     var search = search || $scope.searchBeach;
-    if (!!search) {
+    if (!!search && MapService.isInBeachCache(search)) {
       $state.go('details');
       MapService.setCurrentBeach(search);
       MapService.zoomToBeach(search);
