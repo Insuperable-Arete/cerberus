@@ -12,12 +12,15 @@ typeAhead.controller("TypeAheadController", function($scope, $rootScope, MapServ
     });
   });
 
-  $scope.onSubmit = function () {
-    $state.go('details');
-    MapService.setCurrentBeach($scope.searchBeach);
-    MapService.zoomToBeach($scope.searchBeach);
-    $scope.openSidebar();
-    AnimationService.highlightMarker();
+  $scope.onSubmit = function (search) {
+    var search = search || $scope.searchBeach;
+    if (!!search && MapService.isInBeachCache(search)) {
+      $state.go('details');
+      MapService.setCurrentBeach(search);
+      MapService.zoomToBeach(search);
+      $scope.openSidebar();
+      AnimationService.highlightMarker();
+    }
   };
 
 });

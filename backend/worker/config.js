@@ -3,10 +3,11 @@ var cron = require('node-schedule');
 
 var apiUtils = require('./utils/apiUtils.js');
 var crudUtils = require('./utils/crudUtils.js');
+var data = require('./utils/json/beachData.json');
 
 var app = express();
 
-crudUtils.writeBeachEntries();
+crudUtils.writeBeachEntries(data);
 
 //enable the below function if you want tweets to popualte
 //apiUtils.tweetData();

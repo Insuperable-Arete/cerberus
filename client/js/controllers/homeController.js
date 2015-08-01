@@ -17,6 +17,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
       $scope.openSidebar();
       $timeout(function() { $scope.detailsTab = true; }, 1000)
     } else {
+      MapService.currentBeach = null;
       $scope.isOnDetails = false;
       $scope.detailsTab = false;
     }
@@ -25,7 +26,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
   $scope.$on('beach clicked', function() {
       $state.go('details');
       if ($scope.sideMenu === true) {
-        $scope.$apply(function() {$scope.detailsTab = true;})
+        $timeout(function() { $scope.detailsTab = true; }, 1000)
       }
       // or if not on details
       if ($scope.sideMenu === false) {
@@ -52,6 +53,7 @@ home.controller('HomeController', function($rootScope, $state, $scope, $modal, $
 
   $scope.closeSidebar = function() {
     $scope.sideMenu = false;
+    $scope.detailsTab = false;
   };
 
   $scope.toggleTab = function() {

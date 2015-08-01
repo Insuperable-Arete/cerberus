@@ -1,6 +1,6 @@
 .side-menu-tab(ng-show="sideMenu && isOnDetails" ng-class="detailsTab ? 'show-tab' : ''" ng-controller="DetailsTabController")
   .side-menu-tab-content
-      span.glyphicon.glyphicon-remove(ng-click="toggleDetailsTab()")
+    span.glyphicon.glyphicon-remove(ng-click="toggleDetailsTab()")
     .row
       .col-md-3
         .circle.center
@@ -34,5 +34,6 @@
             Wind Direction
           .center.ng-cloak.
             {{beachInfo.forecast.wind.compassDirection}}
-.side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''").
-  Details
+.side-menu-tab-selector(ng-show="sideMenu && isOnDetails" ng-click="toggleDetailsTab()" ng-class="detailsTab ? 'show-tab' : ''")
+  strong.side-menu-tab-selector-content.
+    Details

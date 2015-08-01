@@ -4,8 +4,8 @@
 }
 .circle {
   opacity: 0;
-  background: linear-gradient(to bottom, #00bcd4 0%,#ff4081 100%);
-  // background-color: turquoise;
+  // background: linear-gradient(to bottom, #00bcd4 0%,#ff4081 100%);
+  background-color: #C7CCF7;
   border-radius: 100px;
   height: 175px;
   width: 175px;
@@ -176,6 +176,9 @@
   width: 10px;
   background-color: black;
   top: 63px;
+}
+g path {
+  stroke: #5B5BB7;
 }
 
 // * Compass animation

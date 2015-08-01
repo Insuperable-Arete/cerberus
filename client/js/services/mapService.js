@@ -1,5 +1,5 @@
 angular.module('app.mapService', [])
-  .factory('MapService', function($http, $rootScope) {
+  .factory('MapService', function($http, $rootScope, $state) {
 
     var map;
     var beachCache;
@@ -17,6 +17,7 @@ angular.module('app.mapService', [])
 
     var updateBeachInfo = function() {
       if (!currentBeach) {
+        $state.go('default');
         throw new Error('Error: updateBeachInfo failed, no beach selected');
         return;
       }
@@ -34,8 +35,9 @@ angular.module('app.mapService', [])
     var getBeachData = function() {
       return $http({
         method: 'GET',
-        url: '/fetch'
+        url: 'http://localhost:1337/fetch'
       }).then(function (resp) {
+        console.log(resp.data);
         return resp.data;
       });
     };
@@ -112,6 +114,15 @@ angular.module('app.mapService', [])
       updateBeachInfo();
     };
 
+    var isInBeachCache = function(beachName) {
+      for (var i = 0; i < beachCache.length; i++) {
+        if (beachCache[i].beachname === beachName) {
+          return true;
+        }
+      }
+      return false;
+    };
+
     return {
       getBeachData: getBeachData,
       setMap: setMap,
@@ -125,6 +136,7 @@ angular.module('app.mapService', [])
       currentBeach: currentBeach,
       currentTimeIndex: currentTimeIndex,
       updateBeachInfo: updateBeachInfo,
-      beachInfo: beachInfo
+      beachInfo: beachInfo,
+      isInBeachCache: isInBeachCache
     };
   });

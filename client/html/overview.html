@@ -15,9 +15,9 @@
     <div> </div>
     <div ng-if="mySelect.value === 'wind chill'" class="overviewColumn2">{{beach.forecastData[0].wind.chill}}&deg</div>
     <div> </div>
-    <div ng-if="mySelect.value === 'swell height'" class="overviewColumn2">{{beach.forecastData[0].swell.components.primary.height}} ft.</div>
+    <div ng-if="mySelect.value === 'swell height'" class="overviewColumn2">{{beach.forecastData[0].swell.components.combined.height}} ft.</div>
     <div> </div>
-    <div ng-if="mySelect.value === 'swell period'" class="overviewColumn2">{{beach.forecastData[0].swell.components.primary.period}} ft.</div>
+    <div ng-if="mySelect.value === 'swell period'" class="overviewColumn2">{{beach.forecastData[0].swell.components.combined.period}} ft.</div>
     <div> </div>
   </div>
 </div>

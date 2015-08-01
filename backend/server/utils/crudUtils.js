@@ -7,5 +7,3 @@ exports.retrieveBeachData = function (cb) {
   		cb(data);
   	})
 };
-
-
