@@ -34,6 +34,7 @@ var getMswAsync = Promise.promisify (function(beach, cb){
       })
 });
 
+//async-map like util recurses over the database, passing in data to the promisified callback
 var iterativeApiCall = function(func, time){
   return function(){
     Beach.find({})
@@ -57,6 +58,7 @@ var iterativeApiCall = function(func, time){
   }
 };
 
+//promisified utilty which scrapes beach descriptions from the Magic Seaweed website
 var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
   var url = 'http://magicseaweed.com/Playa-Linda-Surf-Guide/' + (beach.mswId).toString();
   requestPromise(url)
@@ -77,11 +79,11 @@ var getMswDescriptionAsync = Promise.promisify (function(beach, cb){
 });
 
 
-
+//exported utils passed into iterativeApiCall
 exports.mswDescriptions = iterativeApiCall(getMswDescriptionAsync, 0);
 exports.mswData = iterativeApiCall(getMswAsync, 0);
-exports.tweetData = iterativeApiCall(getTweetsAsync, 60100);
 
+//cron utility
 exports.updateBeachData = function(){
   var rule = new cron.RecurrenceRule();
   rule.hour = new cron.Range(0, 23, 3);
