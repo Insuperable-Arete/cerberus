@@ -3,7 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/Insuperable-Arete/cerberus/badge.svg?branch=master&service=github)](https://coveralls.io/github/Insuperable-Arete/cerberus?branch=master)
 
 ## Description
-Cerfer.us is a data service and visualization app of California coastal weather conditions for surfers. The front end, powered by the Goolge Maps API, AngularJS, and D3.js, provides advanced search and data services for surfers looking for the best waves and beaches closest to them. The data used by this frontend is supplied by a Node.js/Express-powered backend.
+Cerfer.us is a data service and visualization app of California coastal weather conditions for surfers. The front end, powered by the Google Maps API, AngularJS, and D3.js, provides advanced search and data services for surfers looking for the best waves and beaches closest to them. The data is served by a Node.js/Express-powered back end.
 
 
 ## Table of Contents
