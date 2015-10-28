@@ -50,10 +50,8 @@ Cerfer.us is a data service and visualization app of California coastal weather 
 	- chai
 
 ## Roadmap
-
-	View the project roadmap [here](https://github.com/Insuperable-Arete/cerberus/issues)
+View the project roadmap [here](https://github.com/Insuperable-Arete/cerberus/issues).
 
 
 ## Contributing
-
-	See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
